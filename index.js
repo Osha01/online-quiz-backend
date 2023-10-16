@@ -15,7 +15,7 @@ app.post('/kreuzwort', async (req, res) =>{
 })
 
 
-app.post('/:col/:key', async (req, res) => {
+app.post('/db/:col/:key', async (req, res) => {
   console.log(req.body)
 
   const col = req.params.col
@@ -27,7 +27,7 @@ app.post('/:col/:key', async (req, res) => {
 })
 
 // Delete an item
-app.delete('/:col/:key', async (req, res) => {
+app.delete('/db/:col/:key', async (req, res) => {
   const col = req.params.col
   const key = req.params.key
   console.log(`from collection: ${col} delete key: ${key} with params ${JSON.stringify(req.params)}`)
@@ -37,7 +37,7 @@ app.delete('/:col/:key', async (req, res) => {
 })
 
 // Get a single item
-app.get('/:col/:key', async (req, res) => {
+app.get('/db/:col/:key', async (req, res) => {
   const col = req.params.col
   const key = req.params.key
   console.log(`from collection: ${col} get key: ${key} with params ${JSON.stringify(req.params)}`)
@@ -47,7 +47,7 @@ app.get('/:col/:key', async (req, res) => {
 })
 
 // Get a full listing
-app.get('/:col', async (req, res) => {
+app.get('/db/:col', async (req, res) => {
   const col = req.params.col
   console.log(`list collection: ${col} with params: ${JSON.stringify(req.params)}`)
   const items = await db.collection(col).list()

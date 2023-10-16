@@ -1,4 +1,7 @@
 export default async function(body) {
+    return {
+        "Test": "Test"
+    }
     if (body.type == 1) {
         // const kwNew = require('./kreuzwortNew')
         // let res = await kwNew(body)

@@ -16,15 +16,14 @@ class KreuzwortMessager extends Function {
         
         for (let i = 0; i < users.length; i++){
             let lines = [];
-            let userI = 0;
             for (let j = 0; j < quiz.props.lines.length; j++){
                 let line = quiz.props.lines[j];
-                if (assignedUsers[userI] == i){
+                if (assignedUsers[j] == i){
                     lines.push({
                         id: line.id,
                         start: line.start,
                         length: line.answer.length,
-                        user: users[assignedUsers[userI]],
+                        user: users[assignedUsers[j]],
                         state: 0,
                         question : line.question
                     });
@@ -52,7 +51,6 @@ class KreuzwortMessager extends Function {
             console.log(body);
             await channel.publish('start' + users[i], body);
             console.log('message sent to: ' + users[i]);
-            userI = (userI + 1) % users.length;
         }
         ably.close();
         return assignedUsers;

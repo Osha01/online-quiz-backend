@@ -14,7 +14,6 @@ app.use(cors());
 app.post('/kreuzwort', async (req, res) =>{
   const kreuzwortController = require('./src/kreuzwort/kreuzwortController');
   const item = await kreuzwortController.parseCall(req.body);
-  //res.setHeader('Access-Control-Allow-Origin', '*');
   res.json(item).end();
 })
 

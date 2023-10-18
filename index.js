@@ -1,18 +1,20 @@
 const express = require('express');
 const app = express();
 const db = require('@cyclic.sh/dynamodb');
+const cors = require('cors');
 
 
 /*This is a built-in middleware function in Express. 
 It parses incoming requests with JSON payloads and is based on body-parser.*/
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 //Kreuzwort Abfangen
 app.post('/kreuzwort', async (req, res) =>{
   const kreuzwortController = require('./src/kreuzwort/kreuzwortController');
   const item = await kreuzwortController.parseCall(req.body);
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  //res.setHeader('Access-Control-Allow-Origin', '*');
   res.json(item).end();
 })
 

@@ -34,7 +34,7 @@ class KreuzwortMessager extends Function {
                         start: line.start,
                         length: line.answer.length,
                         state: 0,
-                        user: users[assignedUsers[userI]]
+                        user: users[assignedUsers[j]]
                     });
                 }
             }

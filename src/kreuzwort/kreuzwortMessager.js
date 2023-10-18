@@ -88,6 +88,12 @@ class KreuzwortMessager extends Function {
             }
             res.push(r);
             buckets[r] = buckets[r] + 1;
+            console.log('Index: ' + done);
+            console.log('Random Number: ' + r);
+            console.log('Res: ');
+            console.log(res);
+            console.log('Bucket: ');
+            console.log(buckets);
         }
         return res;
     }

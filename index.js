@@ -17,7 +17,7 @@ app.post('/kreuzwort', async (req, res) =>{
   res.json(item).end();
 });
 app.options('/kreuzwort', async (req, res) =>{
-  res.end();
+  res.json(req.body).end();
 });
 
 

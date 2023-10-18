@@ -48,6 +48,7 @@ class KreuzwortMessager extends Function {
                     lines: lines
                 }
             }
+            console.log(body);
             await channel.publish('start' + users[i], body);
             userI = (userI + 1) % users.length;
         }

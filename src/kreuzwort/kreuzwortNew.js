@@ -6,8 +6,8 @@ class KreuzwortNew extends Function {
     async createNewKreuzwort(body) {
         const messager = require("./kreuzwortMessager")
         let quiz = await this.getRandomQuiz(body.userCount);
-        let res = await messager.messageStart(quiz, body.users, body.room);
-        return res;
+        await messager.messageStart(quiz, body.users, body.room);
+        return 'Done!';
     }
 
     async getRandomQuiz(userCount) {

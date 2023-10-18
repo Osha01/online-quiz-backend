@@ -52,7 +52,7 @@ class KreuzwortMessager extends Function {
             userI = (userI + 1) % users.length;
         }
         ably.close();
-        return quiz;
+        return assignedUsers;
     }
 
     async messageCorrection(i, state, room){

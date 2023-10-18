@@ -9,6 +9,7 @@ class KreuzwortUpdate extends Function {
         let quiz = await db.getItem(body.id);
         const state = this.getState(quiz.props.lines[body.line - 1], body.answer);
         await messager.messageCorrection(body.line, state, body.room);
+        return 'Done!';
     }
 
     getState(line, answer){

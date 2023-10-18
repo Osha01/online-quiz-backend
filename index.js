@@ -17,6 +17,7 @@ app.post('/kreuzwort', async (req, res) =>{
   res.json(item).end();
 });
 app.options('/kreuzwort', async (req, res) =>{
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,auhtorization');
   res.json(req.body).end();
 });
 

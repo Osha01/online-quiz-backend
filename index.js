@@ -12,11 +12,14 @@ app.use(cors());
 
 //Kreuzwort Abfangen
 app.post('/kreuzwort', async (req, res) =>{
-  console.log(req);
   const kreuzwortController = require('./src/kreuzwort/kreuzwortController');
   const item = await kreuzwortController.parseCall(req.body);
   res.json(item).end();
-})
+});
+app.options('/kreuzwort', async (req, res) =>{
+  res.end();
+});
+
 
 
 app.post('/db/:col/:key', async (req, res) => {

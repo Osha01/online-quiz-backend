@@ -3,9 +3,8 @@ class KreuzwortController extends Function {
         super(props);
     }
 
-    async parseCall(bodyString) {
-        console.log(bodyString)
-        let body = JSON.parse(bodyString);
+    async parseCall(body) {
+        console.log(body)
         if (body.type == 1) {
             const kwNew = require('./kreuzwortNew');
             let res = await kwNew.createNewKreuzwort(body);

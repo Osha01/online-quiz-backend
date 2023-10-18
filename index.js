@@ -12,9 +12,6 @@ app.post('/kreuzwort', async (req, res) =>{
   const kreuzwortController = require('./src/kreuzwort/kreuzwortController').default;
   const item = await kreuzwortController(req.body);
   res.json(item).end();
-  res.json({
-    Test: 'test'
-  }).end();
 })
 
 

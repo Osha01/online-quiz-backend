@@ -66,7 +66,7 @@ class KreuzwortMessager extends Function {
             i: i, 
             state: state
         }
-        channel.publish('correction', body);
+        await channel.publish('correction', body);
         ably.close();
     }
 

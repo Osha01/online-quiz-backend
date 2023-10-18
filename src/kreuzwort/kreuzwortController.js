@@ -4,6 +4,7 @@ class KreuzwortController extends Function {
     }
 
     async parseCall(bodyString) {
+        console.log(bodyString)
         let body = JSON.parse(bodyString);
         if (body.type == 1) {
             const kwNew = require('./kreuzwortNew');

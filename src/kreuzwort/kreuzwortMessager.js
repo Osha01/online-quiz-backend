@@ -4,6 +4,7 @@ class KreuzwortMessager extends Function {
     }
 
     async messageStart(quiz, users, room) {
+        console.log('messageStart');
         const kwAbly = require('./kreuzwortAbly');
         const Ably = require('ably');
         const ably = new Ably.Realtime.Promise('0sa0Qw.VDigAw:OeO1LYUxxUM7VIF4bSsqpHMSZlqMYBxN-cxS0fKeWDE');
@@ -50,6 +51,7 @@ class KreuzwortMessager extends Function {
             }
             console.log(body);
             await channel.publish('start' + users[i], body);
+            console.log('message sent to: ' + users[i]);
             userI = (userI + 1) % users.length;
         }
         ably.close();

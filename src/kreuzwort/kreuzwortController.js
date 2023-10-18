@@ -1,8 +1,13 @@
-export default async function(body) {
-    return {
-        "Test": "TestController"
+class KreuzwortController extends Function(body) {
+    constructor(){
+        //so far empty
     }
-    // if (body.type == 1) {
+
+    async parseCall(body){
+        return {
+            "Test": "controller"
+        }
+        // if (body.type == 1) {
     //     const kwNew = require('./kreuzwortNew')
     //     let res = await kwNew(body)
     //     return res;
@@ -15,5 +20,7 @@ export default async function(body) {
     //     let res = await kwUpdate(body)
     //     return res
     // }
+    }
+    
 }
         

@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
-const db = require('@cyclic.sh/dynamodb')
+const db = require('@cyclic.sh/dynamodb');
+
 
 /*This is a built-in middleware function in Express. 
 It parses incoming requests with JSON payloads and is based on body-parser.*/
@@ -9,8 +10,8 @@ app.use(express.urlencoded({ extended: true }))
 
 //Kreuzwort Abfangen
 app.post('/kreuzwort', async (req, res) =>{
-  const kreuzwortController = require('./src/kreuzwort/kreuzwortController').default;
-  const item = await kreuzwortController(req.body);
+  const kreuzwortController = require('./src/kreuzwort/kreuzwortController');
+  const item = await kreuzwortController.parseCall(req.body);
   res.json(item).end();
 })
 

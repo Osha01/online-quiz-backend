@@ -13,6 +13,8 @@ class KreuzwortUpdate extends Function {
     }
 
     getState(line, answer){
+        console.log(line.answer);
+        console.log(answer);
         if (line.answer == answer) return 1;
         return -1;
     }

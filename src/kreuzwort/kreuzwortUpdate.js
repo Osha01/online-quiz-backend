@@ -7,7 +7,7 @@ class KreuzwortUpdate extends Function {
         const messager = require("./kreuzwortMessager");
         const db = require('./kreuzwortDb');
         let quiz = await db.getItem(body.id);
-        const state = this.getState(quiz.props.lines[body.line - 1].answer, body.answer);
+        const state = this.getState(quiz.props.lines[body.line].answer, body.answer);
         await messager.messageCorrection(body.line, state, body.room);
         return 'Done!';
     }

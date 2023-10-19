@@ -81,17 +81,13 @@ class KreuzwortMessager extends Function {
         }
         for (let done = 0; done < questionCount; done++){
             let r = this.getRandomInt(0, userCount - 1);
-            while (buckets[r] >= perUser){
+            let tryCount = 0;
+            while (buckets[r] >= perUser || tryCount > userCount){
                 r = (r + 1) % userCount;
+                tryCount++;
             }
             res.push(r);
             buckets[r] = buckets[r] + 1;
-            console.log('Index: ' + done);
-            console.log('Random Number: ' + r);
-            console.log('Res: ');
-            console.log(res);
-            console.log('Bucket: ');
-            console.log(buckets);
         }
         return res;
     }

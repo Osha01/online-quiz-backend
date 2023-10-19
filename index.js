@@ -17,8 +17,6 @@ app.post('/kreuzwort', async (req, res) =>{
   res.json(item).end();
 });
 
-
-
 app.post('/db/:col/:key', async (req, res) => {
   console.log(req.body)
 

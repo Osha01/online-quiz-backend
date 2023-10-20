@@ -15,7 +15,7 @@ class KreuzwortUpdate extends Function {
     getState(line, answer){
         console.log(line);
         console.log(answer);
-        if (line == answer) return 1;
+        if (line.toLowerCase() == answer.toLowerCase()) return 1;
         return -1;
     }
 }

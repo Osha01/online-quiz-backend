@@ -27,7 +27,7 @@ class DataBase extends Function {
     }
 
     async getItem(collection, key) {
-        const item = await db.collection(collection).get(key)
+        const item = await db.collection(collection).get(key);
         return item;
     }
 

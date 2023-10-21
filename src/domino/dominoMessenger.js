@@ -4,7 +4,7 @@ class dominoMessenger extends Function {
   }
 
   async sendFirstMessage(fragen, users, room) {
-    db.require("./dominoDb");
+    const db = require("./dominoDb");
     console.log("messageStart");
     const Ably = require("ably");
     const ably = new Ably.Realtime.Promise(

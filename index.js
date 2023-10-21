@@ -8,9 +8,10 @@ const cors = require('cors');
 It parses incoming requests with JSON payloads and is based on body-parser.*/
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({
-  origin: 'https://tiny-cyan-turkey-tutu.cyclic.app/'
-}));
+app.use(cors());
+// app.use(cors({
+//   origin: 'https://tiny-cyan-turkey-tutu.cyclic.app/'
+// }));
 
 //Kreuzwort Abfangen
 app.post('/kreuzwort', async (req, res) =>{
@@ -18,6 +19,9 @@ app.post('/kreuzwort', async (req, res) =>{
   const item = await kreuzwortController.parseCall(req.body);
   res.json(item).end();
 });
+
+//Contributor abfangen
+app.get('/contributor')
 
 app.post('/db/:col/:key', async (req, res) => {
   console.log(req.body)

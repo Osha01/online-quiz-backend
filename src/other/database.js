@@ -1,3 +1,5 @@
+const db = require('@cyclic.sh/dynamodb');
+
 class DataBase extends Function {
     async getFullList(collection) {
         const items = await db.collection(collection).list();

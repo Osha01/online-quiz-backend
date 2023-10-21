@@ -4,5 +4,6 @@ class dominoController extends Function() {
   }
   async parseCall(body) {
     console.log("Domino____> " + body);
+    return "Done!";
   }
 }

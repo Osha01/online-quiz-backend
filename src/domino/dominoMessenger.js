@@ -1,5 +1,5 @@
 class dominoMessenger extends Function {
-  constructor(porps) {
+  constructor(props) {
     super(props);
   }
 

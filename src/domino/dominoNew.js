@@ -8,13 +8,11 @@ class domino extends Function {
 
     let questions = await db.getRandomQuestions(body.userCount);
     let gameId = db.getNewId();
-    console.log("GameId" + gameId);
     await messenger.sendFirstMessage(
       questions,
       body.users,
       body.userCount,
-      body.room,
-      gameId
+      body.room
     );
     return "Done Domino!";
   }

@@ -14,8 +14,9 @@ class dominoDb extends Function {
     let collection = await this.getCollection();
     let res = [];
     for (let i = 0; i < anzahlFragen; i++) {
-      res.push(collection[i]);
+      res.push(collection.results[i]);
     }
+    console.log("Result: " + res);
     return res;
   }
   async getNewId() {

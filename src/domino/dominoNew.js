@@ -5,7 +5,7 @@ class domino extends Function {
   async getNewDomino(body) {
     const messenger = require("./dominoMessenger");
     const db = require("./dominoDb");
-    let questions = await db.getRandomQuestions(body.user.length);
+    let questions = await db.getRandomQuestions(body.users.length);
     let gameId = db.getId();
     await messenger.sendFirstMessage(questions, body.users, body.room, gameId);
     return "Done Domino!";

@@ -3,8 +3,11 @@ class dominoController extends Function() {
     super(props);
   }
   async parseCall(body) {
-    console.log("Domino____> " + body);
-    return "Done!";
+    if (body.state == -1) {
+      const dominoNew = require("./dominoNew");
+      let res = await dominoNew.getNewDomino(body);
+      return res;
+    }
   }
 }
 module.exports = new dominoController();

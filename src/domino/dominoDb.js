@@ -10,7 +10,7 @@ class dominoDb extends Function {
     console.log(collection);
     return collection;
   }
-  async getRandomSteine(anzahlFragen) {
+  async getRandomQuestions(anzahlFragen) {
     let collection = await this.getCollection();
     let res = [];
     for (let i = 0; i < anzahlFragen; i++) {

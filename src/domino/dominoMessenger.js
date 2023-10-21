@@ -20,7 +20,7 @@ class dominoMessenger extends Function {
         fragen: questions,
       },
     };
-    console.log("users " + users);
+    console.log("user0 " + users[0]);
     for (let i = 0; i < userCount; i++) {
       console.log(body);
       await channel.publish("start" + users[i], body);

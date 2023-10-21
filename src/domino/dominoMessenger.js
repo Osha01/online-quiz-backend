@@ -21,8 +21,9 @@ class dominoMessenger extends Function {
         frage: questions,
       },
     };
-    for (let i = 0; i < users.length; i++) {
-      console.log("An " + users[i] + " " + users.length + body.data.id);
+    console.log(users);
+    for (let i = 0; i < users.length(); i++) {
+      console.log("An " + users[i] + " " + users.length() + body.data.id);
       await channel.publish("start" + users[i], body);
     }
     ably.close();

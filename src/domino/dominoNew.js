@@ -11,3 +11,4 @@ class domino extends Function {
     return "Done Domino!";
   }
 }
+module.exports = new domino();

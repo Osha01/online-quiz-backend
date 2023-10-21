@@ -30,4 +30,4 @@ class dominoDb extends Function {
   }
 }
 
-module.exports = new KreuzwortDb();
+module.exports = new dominoDb();

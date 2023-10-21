@@ -7,3 +7,4 @@ class dominoController extends Function() {
     return "Done!";
   }
 }
+module.exports = new dominoController();

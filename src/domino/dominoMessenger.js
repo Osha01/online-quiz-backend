@@ -26,3 +26,4 @@ class dominoMessenger extends Function {
     ably.close();
   }
 }
+module.exports = new dominoMessenger();

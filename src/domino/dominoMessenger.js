@@ -3,7 +3,7 @@ class dominoMessenger extends Function {
     super(props);
   }
 
-  async sendFirstMessage(questions, users, room, gameId) {
+  async sendFirstMessage(questions, users, userCount, room, gameId) {
     const db = require("./dominoDb");
     console.log("messageStart");
     const Ably = require("ably");
@@ -21,9 +21,9 @@ class dominoMessenger extends Function {
       },
     };
     console.log(users);
-    for (let i = 0; i < users.length; i++) {
+    for (let i = 0; i < userCount; i++) {
+      console.log(body);
       await channel.publish("start" + users[i], body);
-      console.log("An " + users[i] + " " + body.data.id);
     }
     ably.close();
   }

@@ -22,9 +22,9 @@ class dominoMessenger extends Function {
       },
     };
     console.log(users);
-    for (let i = 0; i < users.length(); i++) {
-      console.log("An " + users[i] + " " + users.length() + body.data.id);
+    for (let i = 0; i < users.length; i++) {
       await channel.publish("start" + users[i], body);
+      console.log("An " + users[i] + " " + body.data.id);
     }
     ably.close();
   }

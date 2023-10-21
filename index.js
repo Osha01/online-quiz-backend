@@ -12,6 +12,13 @@ app.use(cors());
 //   origin: 'https://tiny-cyan-turkey-tutu.cyclic.app/'
 // }));
 
+//Domino Abfangen
+app.post("/domino", async (req, res) => {
+  const dominoController = require("./src/domino/dominoController");
+  const item = await dominoController.parseCall(req.body);
+  res.json(item).end();
+});
+
 //Kreuzwort Abfangen
 app.post("/kreuzwort", async (req, res) => {
   const kreuzwortController = require("./src/kreuzwort/kreuzwortController");

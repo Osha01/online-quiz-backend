@@ -1,4 +1,4 @@
-class KreuzwortMessager extends Function {
+class KreuzwortMessenger extends Function {
     constructor(props) {
         super(props);
     }
@@ -102,4 +102,4 @@ class KreuzwortMessager extends Function {
     }
 }
 
-module.exports = new KreuzwortMessager;
+module.exports = new KreuzwortMessenger;

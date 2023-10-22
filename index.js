@@ -26,8 +26,18 @@ app.post("/kreuzwort", async (req, res) => {
   res.json(item).end();
 });
 
+//Taboo abfangen
+app.post("/kreuzwort", async (req, res) => {
+  const kreuzwortController = require("./src/kreuzwort/kreuzwortController");
+  const item = await kreuzwortController.parseCall(req.body);
+  res.json(item).end();
+});
+
 //Contributor abfangen
-app.get("/contributor");
+app.get("/contributor", async (req, res) => {
+  //TODO
+  res.json(item).end();
+});
 
 app.post("/db/:col/:key", async (req, res) => {
   console.log(req.body);

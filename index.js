@@ -39,12 +39,12 @@ app.post("/kreuzwort", async (req, res) => {
   res.json(item).end();
 });
 
-//Kreuzwort abfangen
+//wwm abfangen
 app.post("/wwm", async (req, res) => {
   const wwmController = require("./src/wwm/wwmController");
   await wwmController.parseCall(req.body);
   const item = {
-    content: 'done kreuzwort'
+    content: 'done wwm'
   };
   res.json(item).end();
 });

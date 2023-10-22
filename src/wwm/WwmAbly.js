@@ -9,7 +9,7 @@ class WwmAbly extends Function{
     }
 
     getCorrectionChannelId(room){
-        return 'kreuzwort' + room;
+        return 'wwm' + room;
     }
 }
 

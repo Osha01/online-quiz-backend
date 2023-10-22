@@ -4,7 +4,7 @@ class TabooMessenger extends Function {
     }
 
     getChannelId(room) {
-        return 'taboo' + room;
+        return 'room' + room;
     }
 
     async sendMessages(quiz, users, room) {

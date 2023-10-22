@@ -4,19 +4,14 @@ class WwmNew extends Function {
     }
     async getNewWwm(body) {
         const messenger = require("./WwmMessenger"); 
+        const db = require("./wwmDb");
         let quiz = await this.getRandomQuiz(body.userCount);
         await messenger.messageStart(
             quiz, 
-            body.users, 
+            body.users,  
             body.room);
         return 'Quiz Done!';
     }
-    async getRandomQuiz(userCount) {
-        const db = require('./wwmDb')
-        let allQuizes = await db.getFilteredList(userCount);
-        let index = this.getRandomInt(0, allQuizes.length - 1);
-        let key = allQuizes[index].key;
-        return await db.getItem(key);
-    }
+    
 }
 module.exports = new wWwmNew;

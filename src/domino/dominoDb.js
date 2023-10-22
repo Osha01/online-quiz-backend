@@ -13,7 +13,8 @@ class dominoDb extends Function {
   async getRandomQuestions(anzahlFragen) {
     let collection = await this.getCollection();
     let res = [];
-    for (let i = 0; i < anzahlFragen; i++) {
+    let anzahl = anzahlFragen * 4;
+    for (let i = 0; i < anzahl; i++) {
       let item = await this.getItem(collection.results[i].key);
       console.log(item);
       res.push(item);

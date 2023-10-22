@@ -41,8 +41,8 @@ app.post("/kreuzwort", async (req, res) => {
 
 //Kreuzwort abfangen
 app.post("/wwm", async (req, res) => {
-  const wwmController = require("./src/wwm/wwmController");
-  await kreuzwortController.parseCall(req.body);
+  const wwmController = require("./src/wwm/werwirdmillionaerController");
+  await wwmController.parseCall(req.body);
   const item = {
     content: 'done kreuzwort'
   };

@@ -72,6 +72,8 @@ class KreuzwortMessenger extends Function {
     }
 
     assignUsersAtRandom(userCount, questionCount) {
+        const randomizer = require('../other/randomInt');
+
         let res = [];
         let buckets = [];
         let perUser = questionCount / userCount;
@@ -80,7 +82,7 @@ class KreuzwortMessenger extends Function {
             buckets.push(0);
         }
         for (let done = 0; done < questionCount; done++){
-            let r = this.getRandomInt(0, userCount - 1);
+            let r = randomizer.getRandomInt(0, userCount - 1);
             let tryCount = 0;
             while (buckets[r] >= perUser || tryCount > userCount){
                 r = (r + 1) % userCount;
@@ -89,15 +91,6 @@ class KreuzwortMessenger extends Function {
             res.push(r);
             buckets[r] = buckets[r] + 1;
         }
-        return res;
-    }
-
-    //Source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random 
-    getRandomInt(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max) + 1;
-        let res = Math.floor(Math.random() * (max - min) + min);
-        console.log('Random number between ' + min + ' and ' + (max - 1) + ': ' + res);
         return res;
     }
 }

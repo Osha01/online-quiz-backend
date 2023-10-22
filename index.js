@@ -19,17 +19,23 @@ app.post("/domino", async (req, res) => {
   res.json(item).end();
 });
 
-//Kreuzwort Abfangen
-app.post("/kreuzwort", async (req, res) => {
+//Taboo Abfangen
+app.post("/taboo", async (req, res) => {
   const tabooController = require("./src/taboo/tabooController");
-  const item = await tabooController.parseCall(req.body);
+  await tabooController.parseCall(req.body);
+  const item = {
+    content: 'done taboo'
+  };
   res.json(item).end();
 });
 
-//Taboo abfangen
-app.post("/taboo", async (req, res) => {
+//Kreuzwort abfangen
+app.post("/kreuzwort", async (req, res) => {
   const kreuzwortController = require("./src/kreuzwort/kreuzwortController");
-  const item = await kreuzwortController.parseCall(req.body);
+  await kreuzwortController.parseCall(req.body);
+  const item = {
+    content: 'done kreuzwort'
+  };
   res.json(item).end();
 });
 

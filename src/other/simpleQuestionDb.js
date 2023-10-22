@@ -14,9 +14,7 @@ class SimpleQuestionDb extends Function {
                 results.push(item);
             }
         }
-        return {
-            results: results
-        }
+        return results;
     }
 
     async getItem(key) {

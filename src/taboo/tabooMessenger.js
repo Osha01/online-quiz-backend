@@ -27,14 +27,14 @@ class TabooMessenger extends Function {
                 if (j == turn) {
                     info = {
                         answer: quiz[j].props.answer,
-                        forbiddenWords: quiz[j].forbiddenWords
+                        forbiddenWords: quiz[j].props.forbiddenWords
                     }
                 }
                 if (j % 2 != team) {
                     enemyTurns.push({
                         turn: j,
                         answer: quiz[j].props.answer,
-                        forbiddenWords: quiz[j].forbiddenWords
+                        forbiddenWords: quiz[j].props.forbiddenWords
                     })
                 }
             }

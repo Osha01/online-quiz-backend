@@ -1,14 +1,17 @@
-class WwmController extends Function {
+class TabooController extends Function {
     constructor(props) {
-      super(props);
+        super(props);
     }
+
     async parseCall(body) {
-      console.log(body);
-      if (body.type == 1) {
-        const wwmNew = require("./WwmNew");
-        let res = await wwmNew.getNewWwm(body);
-        return res;
-      } 
+        const db = require('./tabooDb');
+        const messenger = require('./tabooMessenger');
+
+        let quiz = await db.getTabooQuiz(body.userCount);
+        let usersScrambled = await this.scrambleUsers(body.users, body.userCount);
+
+        await messenger.sendMessages(quiz, usersScrambled, body.room);
     }
 }
-module.exports = new WwmController();
+
+module.exports = new TabooController();

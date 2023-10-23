@@ -17,7 +17,7 @@ class TabooDb extends Function {
         for (let i = 0; i < userCount; i++) {
             let r = randomizer.getRandomInt(0, max);
             while (this.checkIfUsed(r, usedIndexes)) {
-                r = (r + 1) % max;
+                r = (r + 1) % (max + 1);
             }
             usedIndexes.push(r);
             quiz.push(await db.getItem(this.getCollection(), list.results[r].key));

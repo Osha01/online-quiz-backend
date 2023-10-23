@@ -28,6 +28,7 @@ class TabooController extends Function {
                 game: 'wwm',
                 users: users,
                 data: {
+                    player: player,
                     moderator: moderator,
                     list: quizWithoutAnswers
                 }
@@ -38,6 +39,7 @@ class TabooController extends Function {
             game: 'wwm',
             users: users,
             data: {
+                player: player,
                 moderator: moderator,
                 list: quiz
             }

@@ -40,6 +40,7 @@ class KreuzwortMessenger extends Function {
             }
             let body = {
                 game: 'kreuzwort',
+                users: users,
                 data: {
                     id: quiz.key,
                     size: quiz.props.size,

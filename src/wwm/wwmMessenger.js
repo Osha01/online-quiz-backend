@@ -7,7 +7,7 @@ class TabooController extends Function {
         return 'room' + room;
     }
 
-    async sendMessages(quiz, moderator, player, room) {
+    async sendMessages(quiz, moderator, player, room, users) {
         const Ably = require('ably');
         const ably = new Ably.Realtime.Promise('0sa0Qw.VDigAw:OeO1LYUxxUM7VIF4bSsqpHMSZlqMYBxN-cxS0fKeWDE');
         await ably.connection.once('connected');
@@ -26,6 +26,7 @@ class TabooController extends Function {
             }
             let body = {
                 game: 'wwm',
+                users: users,
                 data: {
                     moderator: moderator,
                     list: quizWithoutAnswers
@@ -35,6 +36,7 @@ class TabooController extends Function {
         }
         let body = {
             game: 'wwm',
+            users: users,
             data: {
                 moderator: moderator,
                 list: quiz

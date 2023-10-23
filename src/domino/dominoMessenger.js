@@ -15,6 +15,7 @@ class dominoMessenger extends Function {
     const channel = ably.channels.get(channelId);
     let body = {
       game: "domino",
+      users: users,
       data: {
         fragen: questions,
       },

@@ -11,7 +11,7 @@ class TabooController extends Function {
         let quiz = await creator.createQuiz();
         console.log('done creating quiz!');
         console.log('start sending messages...');
-        await messenger.sendMessages(quiz, body.moderator, body.player, body.room);
+        await messenger.sendMessages(quiz, body.moderator, body.player, body.room, body.users);
         console.log('done sending messages!');
         console.log('done parsing call!');
     }

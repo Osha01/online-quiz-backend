@@ -40,6 +40,7 @@ class TabooMessenger extends Function {
             }
             let body = {
                 game: 'taboo',
+                users: users,
                 data: {
                     team: team,
                     teams: teams,

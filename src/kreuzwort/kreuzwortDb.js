@@ -1,12 +1,16 @@
-const db = require('@cyclic.sh/dynamodb');
+const db = require('../other/database')
 
 class KreuzwortDb extends Function {
     constructor(props) {
         super(props);
     }
 
+    getCollection(){
+        return 'kreuzwort';
+    }
+
     async getList() {
-        const items = await db.collection('kreuzwort').list();
+        const items = await db.getFullList(this.getCollection());
         console.log('Full List');
         console.log(items);
         return items;
@@ -16,7 +20,7 @@ class KreuzwortDb extends Function {
         let fullList = await this.getList();
         let filteredList = [];
         for (let i = 0; i < fullList.results.length; i++) {
-            let item = await this.getItem(fullList.results[i].key);
+            let item = await db.getItem(this.getCollection(), fullList.results[i].key);
             console.log('item: ' + i);
             console.log(item);
             if (item.props.userCount % userCount == 0){
@@ -29,7 +33,7 @@ class KreuzwortDb extends Function {
     }
 
     async getItem(key) {
-        const item = await db.collection('kreuzwort').get(key)
+        const item = await db.getItem(this.getCollection(), key);
         return item;
     }
 

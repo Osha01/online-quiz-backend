@@ -19,15 +19,41 @@ app.post("/domino", async (req, res) => {
   res.json(item).end();
 });
 
-//Kreuzwort Abfangen
+//Taboo Abfangen
+app.post("/taboo", async (req, res) => {
+  const tabooController = require("./src/taboo/tabooController");
+  await tabooController.parseCall(req.body);
+  const item = {
+    content: 'done taboo'
+  };
+  res.json(item).end();
+});
+
+//Kreuzwort abfangen
 app.post("/kreuzwort", async (req, res) => {
   const kreuzwortController = require("./src/kreuzwort/kreuzwortController");
-  const item = await kreuzwortController.parseCall(req.body);
+  await kreuzwortController.parseCall(req.body);
+  const item = {
+    content: 'done kreuzwort'
+  };
+  res.json(item).end();
+});
+
+//wwm abfangen
+app.post("/wwm", async (req, res) => {
+  const wwmController = require("./src/wwm/wwmController");
+  await wwmController.parseCall(req.body);
+  const item = {
+    content: 'done wwm'
+  };
   res.json(item).end();
 });
 
 //Contributor abfangen
-app.get("/contributor");
+app.get("/contributor", async (req, res) => {
+  //TODO
+  res.json(item).end();
+});
 
 app.post("/db/:col/:key", async (req, res) => {
   console.log(req.body);

@@ -33,7 +33,7 @@ class KreuzwortDb extends Function {
     }
 
     async getItem(key) {
-        const item = await db.collection(this.getCollection()).get(key)
+        const item = await db.getItem(this.getCollection(), key);
         return item;
     }
 

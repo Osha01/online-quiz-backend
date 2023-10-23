@@ -15,11 +15,12 @@ class dominoMessenger extends Function {
     const channel = ably.channels.get(channelId);
     let body = {
       game: "domino",
+      users: users,
       data: {
         fragen: questions,
       },
     };
-    console.log("user0 " + users[0]);
+    
     for (let i = 0; i < userCount; i++) {
       console.log(body);
       await channel.publish("start" + users[i], body);

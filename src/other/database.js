@@ -33,9 +33,19 @@ class DataBase extends Function {
         return item;
     }
 
-    async getNextKey(collection){
-        let items = await this.getList(collection);
-        return items.length;
+    async setItem(collection, key, body){
+        await db.collection(collection).set(key, body);
+    }
+
+    async getNextKey(){
+        let last = await this.getItem('keys', 0);
+        let key = last.props.key + 1;
+        await this.setItem('keys', 0, { key: key });
+        return key;
+    }
+
+    async deleteItem(collection, key){
+        await db.collection(collection).delete(key);
     }
 }
 

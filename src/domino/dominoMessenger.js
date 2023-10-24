@@ -17,6 +17,7 @@ class dominoMessenger extends Function {
       game: "domino",
       users: users,
       data: {
+        laenge: 3,
         activePlayer: users[0],
         fragen: questions,
       },

@@ -11,6 +11,10 @@ class contributorController extends Function() {
         for (let i = 0; i < items.results.length; i++) {
             list.push(items.results[i]);
         }
+        items = await db.getFullList('domino');
+        for (let i = 0; i < items.results.length; i++) {
+            list.push(items.results[i]);
+        }
         items = await db.getFullList('simpleQuestion');
         for (let i = 0; i < items.results.length; i++) {
             list.push(items.results[i]);

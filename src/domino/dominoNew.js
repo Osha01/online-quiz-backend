@@ -7,7 +7,6 @@ class domino extends Function {
     const db = require("./dominoDb");
 
     let questions = await db.getRandomQuestions(body.userCount);
-    let gameId = db.getNewId();
     await messenger.sendFirstMessage(
       questions,
       body.users,

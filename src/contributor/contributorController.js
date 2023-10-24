@@ -5,15 +5,19 @@ class contributorController extends Function() {
       super(props);
     }
     async getList(){
+        let list = [];
         let items = await db.getFullList('kreuzwort');
-        let list = items.results;
+        for (let i = 0; i < items.results.length; i++) {
+            list.push(await db.getItem('kreuzwort', items.results[i].key));
+        }
+        
         items = await db.getFullList('taboo');
         for (let i = 0; i < items.results.length; i++) {
-            list.push(items.results[i]);
+            list.push(await db.getItem('taboo', items.results[i].key));
         }
         items = await db.getFullList('simpleQuestion');
         for (let i = 0; i < items.results.length; i++) {
-            list.push(items.results[i]);
+            list.push(await db.getItem('simpleQuestion', items.results[i].key));
         }
         return {
             results: list

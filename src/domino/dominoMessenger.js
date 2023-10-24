@@ -17,10 +17,11 @@ class dominoMessenger extends Function {
       game: "domino",
       users: users,
       data: {
+        activePlayer: users[0],
         fragen: questions,
       },
     };
-    console.log("user0 " + users[0]);
+    
     for (let i = 0; i < userCount; i++) {
       console.log(body);
       await channel.publish("start" + users[i], body);

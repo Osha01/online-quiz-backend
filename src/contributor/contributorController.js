@@ -8,9 +8,13 @@ class contributorController extends Function() {
         let items = await db.getFullList('kreuzwort');
         let list = items.results;
         items = await db.getFullList('taboo');
-        list.concat(items.results);
+        for (let i = 0; i < items.results.length; i++) {
+            list.push(items.results[i]);
+        }
         items = await db.getFullList('simpleQuestion');
-        list.concat(items.results);
+        for (let i = 0; i < items.results.length; i++) {
+            list.push(items.results[i]);
+        }
         return {
             results: list
         };

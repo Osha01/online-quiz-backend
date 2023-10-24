@@ -38,10 +38,10 @@ class DataBase extends Function {
     }
 
     async getNextKey(){
-        let last = await this.getItem('keys', 0);
+        let last = await this.getItem('keys', '0');
         let key = last.props.key + 1;
-        await this.setItem('keys', 0, { key: key });
-        return key;
+        await this.setItem('keys', '0', { key: key });
+        return key + '';
     }
 
     async deleteItem(collection, key){

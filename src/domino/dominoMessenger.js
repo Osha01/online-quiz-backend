@@ -16,8 +16,8 @@ class dominoMessenger extends Function {
     let body = {
       game: "domino",
       users: users,
-      activePlayer: users[0],
       data: {
+        activePlayer: users[0],
         fragen: questions,
       },
     };

@@ -32,6 +32,8 @@ class contributorController extends Function() {
             case 'new':
                 await this.addItem(req);
                 break;
+            case 'get':
+                return await db.getItem(req.collection, req.key);
             default:
                 return {
                     result: 'Could not parse type: please use either change or new'

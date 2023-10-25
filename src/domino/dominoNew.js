@@ -42,7 +42,7 @@ class dominoNew extends Function {
       for(let i= 0;i<questionList.length;++i){
         fragen.push(questionList[i].props.question)
         console.log("Frage hinzugefügt: "+questionList[i].props.question)
-        fragen.push(questionList[i].props.answer)
+        antworten.push(questionList[i].props.answer)
         console.log("Frage hinzugefügt: "+questionList[i].props.answer)
       }
       let verschobenAntworten = []

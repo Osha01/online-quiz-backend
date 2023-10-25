@@ -1,4 +1,4 @@
-const messanger = require("./dominoMessenger")
+
 class dominoCorrector extends Function() {
     constructor(props) {
       super(props);

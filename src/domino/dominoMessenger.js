@@ -22,7 +22,7 @@ class dominoMessenger extends Function {
     for (let i = 0; i < anzahlUsers; i++) {
       // Spieler * 4 = Anzahlefragen 
       for (let j = 0; j < 4; j++) {
-          rindex = this.getRandomInt(copy.length);
+          rindex = this.getRandomInt(copyQ.length);
           item = copyQ[rindex];
           specificQ.push(item)
           copyQ = this.deleteQuestion(rindex, copyQ)

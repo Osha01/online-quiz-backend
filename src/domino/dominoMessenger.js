@@ -48,13 +48,23 @@ class dominoMessenger extends Function {
 
   async sendResultsFormular(correctAnswers, wrongAnswers, users, room) {
     console.log("Ende Spiel");
-    const Ably = require("ably");
-    const ably = new Ably.Realtime.Promise("0sa0Qw.VDigAw:OeO1LYUxxUM7VIF4bSsqpHMSZlqMYBxN-cxS0fKeWDE");
-
-    await ably.connection.once("connected");
-    let channelId = "domino" + room;
+    const Ably = require('ably');
+    const ably = new Ably.Realtime.Promise('0sa0Qw.VDigAw:OeO1LYUxxUM7VIF4bSsqpHMSZlqMYBxN-cxS0fKeWDE');
+    await ably.connection.once('connected');
+    const channelId = 'domino' + this.state.room;
     const channel = ably.channels.get(channelId);
 
+    console.log("ROOM "+this.state.room)
+    this.setState({
+      room: this.state.room,
+      user: this.state.user,
+      data: this.state.data,
+      activePlayer: activePlayer,
+      pool: pool,
+      feld: feld,
+      feldState: this.state.feldState,
+    });   
+    console.log("SEND: "+ feld+ pool+activePlayer)
     let body = {
       game: "domino",
       users: users,
@@ -62,12 +72,13 @@ class dominoMessenger extends Function {
         correctAnswers: correctAnswers,
         wrongAnswers: wrongAnswers
       },
-    };
+    }
 
-      await channel.publish("resultDomino",body);
-      console.log("gesendet an " + users);
+    await channel.publish('resultDomino', body);
+    
+    console.log("gesendet an " + body);
+    ably.close();  
    
-    ably.close();
   }
 
   getRandomInt(max) {

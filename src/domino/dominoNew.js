@@ -1,10 +1,11 @@
+import db from("../other/simpleQuestionDb")
+
 class domino extends Function {
   constructor(props) {
     super(props);
   }
   async getNewDomino(body) {
     const messenger = require("./dominoMessenger");
-    const db = require("./simpleQuestionDB");
     let collection = await db.getFullList();
     let anzahlFragen = body.userCount*4;
     let questionList =[];

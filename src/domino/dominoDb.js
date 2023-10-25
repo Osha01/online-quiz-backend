@@ -5,7 +5,7 @@ class dominoDb extends Function {
     super(props);
   }
   async getCollection() {
-    const collection = await sq.getFullList().list();
+    const collection = await sq.getFullList();
     console.log("Full Collection");
     console.log(collection);
     return collection;

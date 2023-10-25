@@ -1,6 +1,6 @@
 const db = require("../other/simpleQuestionDb")
 
-class domino extends Function {
+class dominoNew extends Function {
   constructor(props) {
     super(props);
   }
@@ -57,4 +57,4 @@ class domino extends Function {
       return {questions: fragen, answers:verschobenAntworten}
   }
 }
-module.exports = new domino();
+module.exports = new dominoNew();

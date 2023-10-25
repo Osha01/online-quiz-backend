@@ -7,7 +7,6 @@ class dominoMessenger extends Function {
     console.log("messageStart");
     const Ably = require("ably");
     const ably = new Ably.Realtime.Promise("0sa0Qw.VDigAw:OeO1LYUxxUM7VIF4bSsqpHMSZlqMYBxN-cxS0fKeWDE");
-    let anzahlFragen = questions.length;
     let anzahlUsers = users.length
     let copyQ = questions;
     let specificQ = []
@@ -22,12 +21,12 @@ class dominoMessenger extends Function {
     for (let i = 0; i < anzahlUsers; i++) {
       // Spieler * 4 = Anzahlefragen 
       for (let j = 0; j < 4; j++) {
-          rindex = this.getRandomInt(copyQ.length);
-          item = copyQ[rindex];
-          specificQ.push(item)
-          copyQ = this.deleteQuestion(rindex, copyQ)
-          console.log("Spieler "+users[i]+" bekommt die Frage "+item.key)
-          console.log("copyQ"+copyQ)
+        rindex = this.getRandomInt(copyQ.length);
+        item = copyQ[rindex];
+        specificQ.push(item)
+        copyQ = this.deleteQuestion(rindex, copyQ)
+        console.log("Spieler " + users[i] + " bekommt die Frage ")
+        console.log("copyQ" + copyQ)
       }
       let body = {
         game: "domino",
@@ -43,18 +42,16 @@ class dominoMessenger extends Function {
 
     }
     ably.close();
+    specificQ = [];
   }
-
-
- 
 
   getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }
-  deleteQuestion(index, list){
-    let nList =[]
-    for(let i= 0; i<list.length;++i){
-      if(i!=index){
+  deleteQuestion(index, list) {
+    let nList = []
+    for (let i = 0; i < list.length; ++i) {
+      if (i != index) {
         nList.push(list[i])
       }
     }

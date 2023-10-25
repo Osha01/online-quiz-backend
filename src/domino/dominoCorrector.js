@@ -4,9 +4,8 @@ class dominoCorrector extends Function() {
       super(props);
     }
     getErgebnisFormular(body){
-        let feld = JSON.parse(body).feld
-        let keyList = JSON.parse(body).keyList
-        let questions = JSON.parse(body).questions
+        let feld = body.feld
+        let questions = body.questions
         console.log(feld)
         let correctAnswer = this.getCorrectAnswers(feld, questions)
         let wrongAnswer = this.getWrongAnswers(correctAnswer, questions)

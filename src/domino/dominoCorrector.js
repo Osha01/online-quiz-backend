@@ -26,7 +26,7 @@ class dominoCorrector extends Function() {
 
       //Feld durchlaufen
       for(let i=0;i<feld.length;i++){
-        for(j=0;j<feld[i].zelle.length;j++){
+        for(let j=0;j<feld[i].zelle.length;j++){
           
           let zelle = feld[i].zelle[j]
           if(zelle.stone.id!=""){          

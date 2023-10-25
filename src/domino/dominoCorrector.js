@@ -10,7 +10,7 @@ class dominoCorrector extends Function() {
         console.log(questions)
 
         let correctAnswers = this.getCorrectAnswers(feld, questions)
-        let wrongAnswers = this.getWrongAnswers(cTest, questions)
+        let wrongAnswers = this.getWrongAnswers(correctAnswers, questions)
 
         let res = { correctAnswers: correctAnswers, wrongAnswers: wrongAnswers }
         return res;

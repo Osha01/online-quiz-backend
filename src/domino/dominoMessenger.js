@@ -10,12 +10,13 @@ class dominoMessenger extends Function {
     const ably = new Ably.Realtime.Promise(
       "0sa0Qw.VDigAw:OeO1LYUxxUM7VIF4bSsqpHMSZlqMYBxN-cxS0fKeWDE"
     );
+    let questionShow = JSON.parse(questions);
     let answers = []
     let newQuestions = []
     let keyList =[] 
-    for(let i = 0 ; i<questions.length;++i){
-      let question= questions[i].props.frage;
-      let answer = questions[i].props.antwort
+    for(let i = 0 ; i<questionShow.length;++i){
+      let question= questionShow[i].props.frage;
+      let answer = questionShow[i].props.antwort
       console.log("Frage "+ question)
       console.log("Antwort "+ answer)
       answers.push(answer)
@@ -23,6 +24,8 @@ class dominoMessenger extends Function {
       keyList.push({f: i, a: i+1})
 
     }
+    console.log("Die Fragen "+newQuestions)
+    console.log("Die KeyList "+keyList)
     let aw = answers;
     let stop = 0;
     let mixedList =[];

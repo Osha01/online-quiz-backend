@@ -62,10 +62,9 @@ class dominoMessenger extends Function {
       },
     };
 
-    for(let user in users){
-      await channel.publish("ende" + user, body);
+      await channel.publish("resultDomino",body);
       console.log("gesendet an " + users);
-    }
+   
     ably.close();
   }
 

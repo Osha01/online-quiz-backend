@@ -13,14 +13,14 @@ class domino extends Function {
 
     if(anzahlFragen<8){
       for (let i = 0; i < 8; i++) {
-        item = await db.getItem(collection[i].key)
+        item = await db.getItem(collection.results[i].key)
         questionList.push(item)
         console.log(item);
 
       }
     }else
       for (let i = 0; i < anzahlFragen; i++) {
-        item = await db.getItem(collection[i].key)
+        item = await db.getItem(collection.results[i].key)
         questionList.push(item)
         console.log(item);
     }

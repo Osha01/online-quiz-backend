@@ -8,7 +8,7 @@ class dominoCorrector extends Function() {
         let questions = body.questions
         console.log(feld)
         let cTest = this.getCorrectAnswers(feld, questions)
-        let wTest = this.getWrongAnswers(correctAnswer, questions)
+        let wTest = this.getWrongAnswers(cTest, questions)
         let wrongAnswers = [{question: "Ein Beispiel für eine FALSCHE", answer: "antwort"},{question: "Noch ein Beispiel", answer: "falsches "},{question: "Noch einn drittes Beispiel", answer: "falsches "}]
         let correctAnswers = [{question: "Ein Beispiel für eine richtige", answer: "antwort"},{question: "Noch ein Beispiel", answer: "Richtiges "}]
         let res = {correctAnswer:correctAnswers, wrongAnswer:wrongAnswers}

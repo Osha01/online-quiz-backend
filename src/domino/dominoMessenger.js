@@ -15,7 +15,7 @@ class dominoMessenger extends Function {
     let item;
 
     await ably.connection.once("connected");
-    let channelId = "room" + room;
+    let channelId = "domino" + room;
     const channel = ably.channels.get(channelId);
 
 

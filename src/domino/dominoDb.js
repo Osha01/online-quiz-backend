@@ -32,7 +32,7 @@ class dominoDb extends Function {
   }
 
   async getItem(key) {
-    let item = await sb.getItem(key);
+    let item = await sq.getItem(key);
     return item;
   }
 

@@ -40,9 +40,9 @@ class domino extends Function {
       let fragen=[]
       let antworten = []
       for(let i= 0;i<questionList.length;++i){
-        fragen.push(questionList.props.question)
+        fragen.push(questionList[i].props.question)
         console.log("Frage hinzugefügt: "+questionList.props.question)
-        fragen.push(questionList.props.answer)
+        fragen.push(questionList[i].props.answer)
         console.log("Frage hinzugefügt: "+questionList.props.answer)
       }
   }

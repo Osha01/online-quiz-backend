@@ -63,12 +63,12 @@ class dominoMessenger extends Function {
     };
 
     for(let user in users){
-      await channel.publish("start" + user, body);
+      await channel.publish("ende" + user, body);
       console.log("gesendet an " + users);
     }
     ably.close();
   }
-  
+
   getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }

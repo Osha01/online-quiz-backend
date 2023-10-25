@@ -8,7 +8,6 @@ class dominoCorrector extends Function() {
         let questions = body.questions
         console.log(feld)
         console.log(questions)
-        console.log(JSON.parse(questions))
 
         let correctAnswers = this.getCorrectAnswers(feld, questions)
         let wrongAnswers = this.getWrongAnswers(cTest, questions)

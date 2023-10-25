@@ -5,13 +5,12 @@ class domino extends Function {
   async getNewDomino(body) {
     const messenger = require("./dominoMessenger");
     const db = require("./dominoDb");
+    let questions = await db.getQuestions(body.userCount*4);
     console.log( "Eingehender body: "+ 
       questions+
       body.users+
       body.userCount+
       body.room);
-
-    let questions = await db.getQuestions(body.userCount*4);
 
     await messenger.sendFirstMessage(
       questions,

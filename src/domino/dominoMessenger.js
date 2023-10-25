@@ -15,7 +15,7 @@ class dominoMessenger extends Function {
     let newQuestions = []
     let keyList =[] 
     console.log(questions.props)
-    for(let i = 0 ; i<questionShow.length;++i){
+    for(let i = 0 ; i<questions.length;++i){
       let question= questions[i].props.frage;
       let answer = questions[i].props.antwort
       console.log("Frage "+ question)

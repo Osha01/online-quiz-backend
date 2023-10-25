@@ -26,7 +26,7 @@ class dominoMessenger extends Function {
           item = copyQ[rindex];
           specificQ.push(item)
           copyQ = this.deleteQuestion(rindex, copyQ)
-          console.log("Spieler "+users[i]+" bekommt die Frage "+item.key)
+          console.log("Spieler "+users[i]+" bekommt die Frage ")
           console.log("copyQ"+copyQ)
       }
       let body = {
@@ -43,10 +43,7 @@ class dominoMessenger extends Function {
 
     }
     ably.close();
-  }
-
-
- 
+  } 
 
   getRandomInt(max) {
     return Math.floor(Math.random() * max);

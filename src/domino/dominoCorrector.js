@@ -11,7 +11,7 @@ class dominoCorrector extends Function() {
         let wTest = this.getWrongAnswers(cTest, questions)
         let wrongAnswers = [{question: "Ein Beispiel für eine FALSCHE", answer: "antwort"},{question: "Noch ein Beispiel", answer: "falsches "},{question: "Noch einn drittes Beispiel", answer: "falsches "}]
         let correctAnswers = [{question: "Ein Beispiel für eine richtige", answer: "antwort"},{question: "Noch ein Beispiel", answer: "Richtiges "}]
-        let res = {correctAnswer:correctAnswers, wrongAnswer:wrongAnswers}
+        let res = {correctAnswers:correctAnswers, wrongAnswers:wrongAnswers}
         console.log("cTest"+cTest)
         console.log("wTest"+wTest)
         return res;
@@ -19,8 +19,8 @@ class dominoCorrector extends Function() {
 
     getCorrectAnswers(feld, questions){
       let ausrichtungStein
-      let correctAnswer=[]
-      let wrongAnswer=[]
+      let correctAnswers=[]
+      let wrongAnswers=[]
       let frage;
       let antwort;
       console.log("Start Tour durch das Feld ...")
@@ -52,7 +52,7 @@ class dominoCorrector extends Function() {
                   antwort =feld[i+1].stone[j].stone.antwort
                   console.log("frage1 "+frage +"  antwort1"+antwort)
                   if(this.frageStimmt(frage,antwort,questions)){
-                    correctAnswer.push({frage: frage,antwort: antwort})
+                    correctAnswers.push({frage: frage,antwort: antwort})
                     console.log("STimmt 1")
                   }
                   console.log("umgekehrt frage2 "+frage+"  antwort2"+antwort)
@@ -60,7 +60,7 @@ class dominoCorrector extends Function() {
                   antwort  = feld[i].stone[j].stone.antwort
                   if(this.frageStimmt(frage,antwort,questions)){
                     console.log("STimmt 2")
-                    correctAnswer.push({frage: frage,antwort: antwort})
+                    correctAnswers.push({frage: frage,antwort: antwort})
                   }
                 }
               }
@@ -82,14 +82,14 @@ class dominoCorrector extends Function() {
                   console.log("frage1 "+frage +"  antwort1"+antwort)
                   if(this.frageStimmt(frage,antwort,questions)){
                     console.log("STimmt 1")
-                    correctAnswer.push({frage: frage,antwort: antwort})
+                    correctAnswers.push({frage: frage,antwort: antwort})
                   }
                   frage =feld[i+1].stone[j].stone.frage
                   antwort  = feld[i].stone[j].stone.antwort
                   console.log("umgekehrt frage2 "+frage+"  antwort2"+antwort)
                   if(this.frageStimmt(frage,antwort,questions)){
                     console.log("STimmt 2")
-                    correctAnswer.push({frage: frage,antwort: antwort})
+                    correctAnswers.push({frage: frage,antwort: antwort})
                   }
                 }
               }
@@ -111,14 +111,14 @@ class dominoCorrector extends Function() {
                 let antwort =feld[i+1].stone[j].stone.antwort
                 console.log("frage1 "+frage +"  antwort1"+antwort)
                 if(this.frageStimmt(frage,antwort,questions)){
-                  correctAnswer.push({frage: frage,antwort: antwort})
+                  correctAnswers.push({frage: frage,antwort: antwort})
                 }
                 frage =feld[i+1].stone[j].stone.frage
                 antwort  = feld[i].stone[j].stone.antwort
                 console.log("umgekehrt frage2 "+frage+"  antwort2"+antwort)
                 if(this.frageStimmt(frage,antwort,questions)){
                   console.log("STimmt 2")
-                  correctAnswer.push({frage: frage,antwort: antwort})
+                  correctAnswers.push({frage: frage,antwort: antwort})
                 }
               }
             }
@@ -135,14 +135,14 @@ class dominoCorrector extends Function() {
                 console.log("frage1 "+frage +"  antwort1"+antwort)
                 if(this.frageStimmt(frage,antwort,questions)){
                   console.log("STimmt 1")
-                  correctAnswer.push({frage: frage,antwort: antwort})
+                  correctAnswers.push({frage: frage,antwort: antwort})
                 }
                 frage =feld[i+1].stone[j].stone.frage
                 antwort  = feld[i].stone[j].stone.antwort
                 console.log("umgekehrt frage2 "+frage+"  antwort2"+antwort)
                 if(this.frageStimmt(frage,antwort,questions)){
                   console.log("STimmt 2")
-                  correctAnswer.push({frage: frage,antwort: antwort})
+                  correctAnswers.push({frage: frage,antwort: antwort})
                 }
               }
             }
@@ -151,10 +151,10 @@ class dominoCorrector extends Function() {
         }
       }
     }
-    getWrongAnswers( correctAnswer,questions){
+    getWrongAnswers( correctAnswers,questions){
       let wList = []
    
-      if(correctAnswer==undefined){
+      if(correctAnswers==undefined){
         return wList;
       }else{
         for(let i = 0; i< question.length;i++){

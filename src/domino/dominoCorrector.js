@@ -7,11 +7,13 @@ class dominoCorrector extends Function() {
         let keyList = JSON.parse(body).keyList
         let questions = JSON.parse(body).questions
         console.log(feld)
-        let Fehlerliste = getFehler(feld, questions)
-        return "Hallo";
+        let correctAnswer = this.getCorrectAnswers(feld, questions)
+        let fehlerlist = this.getWrongAnswers(correctAnswer, questions)
+        let res = [correctAnswer, fehlerlist]
+        return res;
     }
 
-    getFehler(feld, questions){
+    getCorrectAnswers(feld, questions){
       let ausrichtungStein
       let correctAnswer=[]
       let wrongAnswer=[]
@@ -117,12 +119,13 @@ class dominoCorrector extends Function() {
         }
       }
     }
-    getWrongAnswers(questions, correctAnswer){
-      for(let i = 0; i< questions.length;i++){
-        if(correctAnswer.frage==questions[i].frage){
-         
-        }
+    getWrongAnswers( correctAnswer,questions){
+      let fehler = questions;
+      
+      for(let i = 0; i< correctAnswer.length;i++){
+        fehler.forEach(question => correctAnswer[i].frage!=question.frage )
       }
+      return fehler;
     }
     frageStimmt(frage, antwort, questions){
       for(let i =0; i<questions.length;i++){

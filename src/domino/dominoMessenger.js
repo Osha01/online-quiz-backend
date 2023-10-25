@@ -10,6 +10,38 @@ class dominoMessenger extends Function {
     const ably = new Ably.Realtime.Promise(
       "0sa0Qw.VDigAw:OeO1LYUxxUM7VIF4bSsqpHMSZlqMYBxN-cxS0fKeWDE"
     );
+    let answers = []
+    let newQuestions = []
+    let keyList =[] 
+    for(let i = 0 ; i<questions.length;++i){
+      let question= questions[i].props.frage;
+      let answer = questions[i].props.antwort
+      console.log("Frage "+ question)
+      console.log("Antwort "+ answer)
+      answers.push(answer)
+      newQuestions.push(question)  
+      keyList.push({f: i, a: i+1})
+
+    }
+    let aw = answers;
+    let stop = 0;
+    let mixedList =[];
+    for(let i = 0; i<answers.length||stop<50;){
+      //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+        let k = Math.random() * (answers.length - 0) + 0;
+        if(aw[k]>-1){
+          console.log("k "+k+" "+{f: 0, a: k})
+          mixedList.push({f: 0, a: k})
+          i++
+        }
+        stop++;
+    }
+    for(let i= 0; i<mixedList.length;i++){
+      mixedList[i].f = i;
+    }
+    console.log(mixedList + " und "+ keyList)
+
+
     await ably.connection.once("connected");
     let channelId = "room" + room;
     const channel = ably.channels.get(channelId);

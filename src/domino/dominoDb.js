@@ -5,7 +5,7 @@ class dominoDb extends Function {
     super(props);
   }
   async getCollection() {
-    const collection = await sq.collection.getCollection().list();
+    const collection = await sq.getFullList().list();
     console.log("Full Collection");
     console.log(collection);
     return collection;
@@ -35,7 +35,7 @@ class dominoDb extends Function {
     let item = await sb.getItem(key);
     return item;
   }
-  
+
 }
 
 module.exports = new dominoDb();

@@ -42,7 +42,7 @@ class dominoMessenger extends Function {
 
     }
     ably.close();
-    copyQ = [];
+    specificQ = [];
   }
 
   getRandomInt(max) {

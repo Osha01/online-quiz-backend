@@ -46,8 +46,8 @@ class dominoNew extends Function {
         console.log("Frage hinzugefügt: "+questionList[i].props.question)
         antworten.push(questionList[i].props.answer)
         console.log("Antwort hinzugefügt: "+questionList[i].props.answer)
-        keys.push(questionList[i].props.key)
-        console.log("Key hinzugefügt: "+questionList[i].props.key)
+        keys.push(questionList[i].key)
+        console.log("Key hinzugefügt: "+questionList[i].key)
       }
 
 

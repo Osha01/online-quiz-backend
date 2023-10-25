@@ -61,7 +61,7 @@ class dominoNew extends Function {
       for(let i= 0; i<fragen.length;++i){
         newQuestions.push({question: fragen[i], answer: antworten[i], key:keys[i]})
       }
-      return {questions: fragen, answers:verschobenAntworten, keys: keys}
+      return newQuestions
   }
 }
 module.exports = new dominoNew();

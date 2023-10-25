@@ -4,16 +4,28 @@ class domino extends Function {
   }
   async getNewDomino(body) {
     const messenger = require("./dominoMessenger");
-    const db = require("./dominoDb");
-    let questions = await db.getQuestions(body.userCount*4);
-    console.log( "Eingehender body: "+ 
-      questions+
-      body.users+
-      body.userCount+
-      body.room);
+    const db = require("./simpleQuestionDB");
+    let collection = await db.getFullList();
+    let anzahlFragen = body.userCount*4;
+    let questionList =[];
+    let item;
+
+    if(anzahlFragen<8){
+      for (let i = 0; i < 8; i++) {
+        item = await db.getItem(collection[i].key)
+        questionList.push(item)
+        console.log(item);
+
+      }
+    }else
+      for (let i = 0; i < anzahlFragen; i++) {
+        item = await db.getItem(collection[i].key)
+        questionList.push(item)
+        console.log(item);
+    }
 
     await messenger.sendFirstMessage(
-      questions,
+      questionList,
       body.users,
       body.userCount,
       body.room

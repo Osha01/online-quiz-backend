@@ -26,6 +26,7 @@ class domino extends Function {
         console.log(item);
     }
     let switchtedList = this.switchList(questionList)
+    console.log(switchtedList);
 
     await messenger.sendFirstMessage(
       questionList,
@@ -36,7 +37,14 @@ class domino extends Function {
     return "Done Domino!";
   }
   switchList(questionList){
-
+      let fragen=[]
+      let antworten = []
+      for(let i= 0;i<questionList.length;++i){
+        fragen.push(questionList.props.question)
+        console.log("Frage hinzugefügt: "+questionList.props.question)
+        fragen.push(questionList.props.answer)
+        console.log("Frage hinzugefügt: "+questionList.props.answer)
+      }
   }
 }
 module.exports = new domino();

@@ -6,7 +6,6 @@ class dominoDb extends Function {
   }
   async getCollection() {
     const collection = await sq.getFullList();
-    console.log("Full Collection");
     console.log(collection);
     return collection;
   }
@@ -23,7 +22,7 @@ class dominoDb extends Function {
     }else
       for (let i = 0; i < anzahlFragen; i++) {
         let item = await this.getItem(collection.results[i].key);
-        console.log("Eine Frage und Antwort:   "+item);
+        console.log("Eine Frage und Antwort:   "+item.props);
         res.push(item);
       }
 

@@ -25,7 +25,7 @@ class dominoCorrector extends Function() {
       let antwort;
 
       //Feld durchlaufen
-      for(i=0;i<feld.length;i++){
+      for(let i=0;i<feld.length;i++){
         for(j=0;j<feld[i].zelle.length;j++){
           
           let zelle = feld[i].zelle[j]

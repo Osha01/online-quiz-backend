@@ -13,6 +13,8 @@ class dominoCorrector extends Function() {
         let wrongAnswers = this.getWrongAnswers(correctAnswers, questions)
 
         let res = { correctAnswers: correctAnswers, wrongAnswers: wrongAnswers }
+        console.log("correct" + correctAnswers)
+        console.log("wrong" + wrongAnswers)
         return res;
     }
 
@@ -157,10 +159,10 @@ class dominoCorrector extends Function() {
         let wList = []
 
         if (correctAnswers == undefined) {
-            return wList;
+            return questions;
         } else {
             for (let i = 0; i < question.length; i++) {
-                if (correctAnswer.forEach(answer => answer.frage != questions[i].frage)) {
+                if (correctAnswers.forEach(answer => answer.frage != questions[i].frage)) {
                     console.log("Nicht in der Liste" + questions[i])
                     wList.push(questions[i])
                 }

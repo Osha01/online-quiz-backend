@@ -54,7 +54,6 @@ class KreuzwortMessenger extends Function {
             console.log('message sent to: ' + users[i]);
         }
         ably.close();
-        return assignedUsers;
     }
 
     async messageCorrection(i, state, room){

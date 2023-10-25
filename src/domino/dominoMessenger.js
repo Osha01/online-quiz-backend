@@ -30,17 +30,20 @@ class dominoMessenger extends Function {
       //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
         let k = Math.random() * (answers.length - 0) + 0;
         if(aw[k]>-1){
-          console.log("k "+k+" "+{f: 0, a: k})
+          console.log("k "+k)
           mixedList.push({f: 0, a: k})
+          aw[k] =-1;
           i++
+        }else{
+          stop++
         }
-        stop++;
+        
     }
     for(let i= 0; i<mixedList.length;i++){
       mixedList[i].f = i;
     }
     console.log(mixedList + " und "+ keyList)
-
+    
 
     await ably.connection.once("connected");
     let channelId = "room" + room;
@@ -52,6 +55,7 @@ class dominoMessenger extends Function {
         laenge: 3,
         activePlayer: users[0],
         fragen: questions,
+        keyList: keyList
       },
     };
     

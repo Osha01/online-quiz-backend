@@ -1,4 +1,4 @@
-import db from("../other/simpleQuestionDb")
+const db = require("../other/simpleQuestionDb")
 
 class domino extends Function {
   constructor(props) {

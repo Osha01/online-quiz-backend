@@ -45,21 +45,27 @@ class dominoNew extends Function {
         fragen.push(questionList[i].props.question)
         console.log("Frage hinzugefügt: "+questionList[i].props.question)
         antworten.push(questionList[i].props.answer)
-        console.log("Frage hinzugefügt: "+questionList[i].props.answer)
+        console.log("Antwort hinzugefügt: "+questionList[i].props.answer)
         keys.push(questionList[i].props.key)
-        console.log("Frage hinzugefügt: "+questionList[i].key)
+        console.log("Key hinzugefügt: "+questionList[i].props.key)
       }
+
+
       let verschobenAntworten = []
-      for(let i= 0; i<antworten.length;++i){
+      let laengeA = antworten.length
+
+      for(let i= 0; i<laengeA;++i){
         if(i==0){
-          verschobenAntworten[antworten.length-1]=antworten[0];
+         
         }else{
           verschobenAntworten[i]=antworten[i-1];
         }
       }
+      verschobenAntworten[0]=antworten[(antworten.length-1)];
+
       console.log(fragen+"  unterschiede "+verschobenAntworten)
       for(let i= 0; i<fragen.length;++i){
-        newQuestions.push({question: fragen[i], answer: antworten[i], key:keys[i]})
+        newQuestions.push({question: fragen[i], answer: antworten[i], key: keys[i]})
       }
       return newQuestions
   }

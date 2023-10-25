@@ -7,13 +7,12 @@ class dominoCorrector extends Function() {
         let feld = body.feld
         let questions = body.questions
         console.log(feld)
-        let cTest = this.getCorrectAnswers(feld, questions)
-        let wTest = this.getWrongAnswers(cTest, questions)
-        let wrongAnswers = [{question: "Ein Beispiel für eine FALSCHE", answer: "antwort"},{question: "Noch ein Beispiel", answer: "falsches "},{question: "Noch einn drittes Beispiel", answer: "falsches "}]
-        let correctAnswers = [{question: "Ein Beispiel für eine richtige", answer: "antwort"},{question: "Noch ein Beispiel", answer: "Richtiges "}]
+        console.log(questions.json())
+
+        let correctAnswers = this.getCorrectAnswers(feld, questions)
+        let wrongAnswers = this.getWrongAnswers(cTest, questions)
+
         let res = {correctAnswers:correctAnswers, wrongAnswers:wrongAnswers}
-        console.log("cTest"+cTest)
-        console.log("wTest"+wTest)
         return res;
     }
 

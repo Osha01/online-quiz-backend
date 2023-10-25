@@ -55,7 +55,6 @@ class dominoMessenger extends Function {
         laenge: 3,
         activePlayer: users[0],
         fragen: questions,
-        keyList: keyList
       },
     };
     

@@ -44,6 +44,31 @@ class dominoMessenger extends Function {
     }
     ably.close();
   }
+  async sendResultsFormular(correctAnswer, wrongAnswer, users) {
+    console.log("Ende Spiel");
+    const Ably = require("ably");
+    const ably = new Ably.Realtime.Promise("0sa0Qw.VDigAw:OeO1LYUxxUM7VIF4bSsqpHMSZlqMYBxN-cxS0fKeWDE");
+
+    await ably.connection.once("connected");
+    let channelId = "room" + room;
+    const channel = ably.channels.get(channelId);
+
+    let body = {
+      game: "domino",
+      users: users,
+      data: {
+        correctAnswer: correctAnswer,
+        wrongAnswer: wrongAnswer
+      },
+    };
+
+    for(let user in users){
+      await channel.publish("start" + user, body);
+      console.log("gesendet an " + users);
+    }
+    ably.close();
+  }
+  
   getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }

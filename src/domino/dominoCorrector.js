@@ -1,3 +1,4 @@
+const messanger = require("./dominoMessenger")
 class dominoCorrector extends Function() {
     constructor(props) {
       super(props);
@@ -8,8 +9,9 @@ class dominoCorrector extends Function() {
         let questions = JSON.parse(body).questions
         console.log(feld)
         let correctAnswer = this.getCorrectAnswers(feld, questions)
-        let fehlerlist = this.getWrongAnswers(correctAnswer, questions)
-        let res = [correctAnswer, fehlerlist]
+        let wrongAnswer = this.getWrongAnswers(correctAnswer, questions)
+        let res = [correctAnswer, wrongAnswer]
+        messanger.sendResultFormular(correctAnswer, wrongAnswer,body.users);
         return res;
     }
 

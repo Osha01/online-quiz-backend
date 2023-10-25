@@ -152,12 +152,19 @@ class dominoCorrector extends Function() {
       }
     }
     getWrongAnswers( correctAnswer,questions){
-      let fehler = questions;
-      
-      for(let i = 0; i< correctAnswer.length;i++){
-        fehler.forEach(question => correctAnswer[i].frage!=question.frage )
+      let wList = []
+   
+      if(correctAnswer==undefined){
+        return wList;
+      }else{
+        for(let i = 0; i< question.length;i++){
+          if(correctAnswer.forEach(answer => answer.frage!=questions[i].frage )){
+            console.log("Nicht in der Liste"+questions[i])
+            wList.push(questions[i])
+          }
+        }
       }
-      return fehler;
+      return wList;
     }
     frageStimmt(frage, antwort, questions){
       for(let i =0; i<questions.length;i++){

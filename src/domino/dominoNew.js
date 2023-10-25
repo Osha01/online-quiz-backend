@@ -10,6 +10,7 @@ class domino extends Function {
     let anzahlFragen = body.userCount*4;
     let questionList =[];
     let item;
+    let laenge = 3;
 
     if(anzahlFragen<8){
       for (let i = 0; i < 8; i++) {
@@ -24,14 +25,18 @@ class domino extends Function {
         questionList.push(item)
         console.log(item);
     }
+    let switchtedList = this.switchList(questionList)
 
     await messenger.sendFirstMessage(
       questionList,
       body.users,
-      body.userCount,
-      body.room
+      body.room,
+      laenge
     );
     return "Done Domino!";
+  }
+  switchList(questionList){
+
   }
 }
 module.exports = new domino();

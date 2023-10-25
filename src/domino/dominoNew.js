@@ -29,7 +29,7 @@ class domino extends Function {
     console.log(switchtedList);
 
     await messenger.sendFirstMessage(
-      questionList,
+      switchtedList,
       body.users,
       body.room,
       laenge
@@ -45,6 +45,16 @@ class domino extends Function {
         fragen.push(questionList[i].props.answer)
         console.log("Frage hinzugefügt: "+questionList[i].props.answer)
       }
+      let verschobenAntworten = []
+      for(let i= 0; i<antworten.length;++i){
+        if(i==0){
+          verschobenAntworten[antworten.length-1]=antworten[0];
+        }else{
+          verschobenAntworten[i]=antworten[i-1];
+        }
+      }
+      console.log(fragen+"  unterschiede "+verschobenAntworten)
+      return {questions: fragen, answers:verschobenAntworten}
   }
 }
 module.exports = new domino();

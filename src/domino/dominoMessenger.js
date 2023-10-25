@@ -44,7 +44,7 @@ class dominoMessenger extends Function {
     }
     ably.close();
   }
-  async sendResultsFormular(correctAnswer, wrongAnswer, users) {
+  async sendResultsFormular(correctAnswers, wrongAnswers, users, room) {
     console.log("Ende Spiel");
     const Ably = require("ably");
     const ably = new Ably.Realtime.Promise("0sa0Qw.VDigAw:OeO1LYUxxUM7VIF4bSsqpHMSZlqMYBxN-cxS0fKeWDE");
@@ -57,8 +57,8 @@ class dominoMessenger extends Function {
       game: "domino",
       users: users,
       data: {
-        correctAnswer: correctAnswer,
-        wrongAnswer: wrongAnswer
+        correctAnswers: correctAnswers,
+        wrongAnswers: wrongAnswers
       },
     };
 

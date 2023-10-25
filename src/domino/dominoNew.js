@@ -37,6 +37,7 @@ class dominoNew extends Function {
     return "Done Domino!";
   }
   switchList(questionList){
+      let keys =[]
       let fragen=[]
       let antworten = []
       for(let i= 0;i<questionList.length;++i){
@@ -44,6 +45,8 @@ class dominoNew extends Function {
         console.log("Frage hinzugefügt: "+questionList[i].props.question)
         antworten.push(questionList[i].props.answer)
         console.log("Frage hinzugefügt: "+questionList[i].props.answer)
+        keys.push(questionList[i].props.key)
+        console.log("Frage hinzugefügt: "+questionList[i].props.key)
       }
       let verschobenAntworten = []
       for(let i= 0; i<antworten.length;++i){
@@ -54,7 +57,7 @@ class dominoNew extends Function {
         }
       }
       console.log(fragen+"  unterschiede "+verschobenAntworten)
-      return {questions: fragen, answers:verschobenAntworten}
+      return {questions: fragen, answers:verschobenAntworten, keys: keys}
   }
 }
 module.exports = new dominoNew();

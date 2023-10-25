@@ -26,15 +26,15 @@ class dominoCorrector extends Function() {
 
       //Feld durchlaufen
       for(let i=0;i<feld.length;i++){
-        for(let j=0;j<feld[i].zelle.length;j++){
+        for(let j=0;j<feld[i].zellen.length;j++){
           
-          let zelle = feld[i].zelle[j]
-          if(zelle.stone.id!=""){          
+          let zellen = feld[i].zellen[j]
+          if(zellen.stone.id!=""){          
             if(i==feld.length-1&&j==feld[i].length-1){
-              //letzte Zelle nichts mehr machen
+              //letzte zellen nichts mehr machen
             }else if(i==feld.length-1){
               //letzte zeile nicht unten drunter suchen
-              if(feld[i].zelle[j+1].stone.id!=""){
+              if(feld[i].zellen[j+1].stone.id!=""){
                 //Stein neben an
                 ausrichtungStein = this.getStoneAusrichtung(feld[i].stone[j].stone)
                 let nebenStein = this.getStoneAusrichtung(feld[i+1].stone[j].stone)
@@ -57,7 +57,7 @@ class dominoCorrector extends Function() {
             }else if(j==feld[i].length-1){
               //letzte Spalte nicht neben dran suchen 
               //nächste Zeile ein Stein?
-              if(feld[i+1].zelle[j].stone.id!=""){
+              if(feld[i+1].zellen[j].stone.id!=""){
                 ausrichtungStein = this.getStoneAusrichtung(feld[i].stone[j].stone)
                 let untererStein = this.getStoneAusrichtung(feld[i+1].stone[j].stone)
                 let ok = this.getNachbarUntenRichtung(untererStein)
@@ -79,9 +79,9 @@ class dominoCorrector extends Function() {
           }else{
           
           //Stein enthalten?
-          if(zelle.stone.id!=""){
+          if(zellen.stone.id!=""){
             //nächste Zeile ein Stein?
-            if(feld[i+1].zelle[j].stone.id!=""){
+            if(feld[i+1].zellen[j].stone.id!=""){
               ausrichtungStein = this.getStoneAusrichtung(feld[i].stone[j].stone)
               let untererStein = this.getStoneAusrichtung(feld[i+1].stone[j].stone)
               let ok = this.getNachbarUntenRichtung(untererStein)
@@ -99,7 +99,7 @@ class dominoCorrector extends Function() {
                 }
               }
             }
-            if(feld[i].zelle[j+1].stone.id!=""){
+            if(feld[i].zellen[j+1].stone.id!=""){
               //Stein neben an
               ausrichtungStein = this.getStoneAusrichtung(feld[i].stone[j].stone)
               let nebenStein = this.getStoneAusrichtung(feld[i+1].stone[j].stone)

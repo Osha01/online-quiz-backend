@@ -52,7 +52,7 @@ class dominoCorrector extends Function() {
                         if (bottomStone.id != "" && bottomStone.id != undefined) {
                             console.log("Stein liegt unter der Zelle " + row + "|" + column)
 
-                            correctAnswer = this.checkUnderStone(stone, bottomStone);
+                            correctAnswer = this.checkUnderStone(observedStone, bottomStone);
                             correctAnswer = this.addCorrectAnswer(correctAnswer);
 
                         }
@@ -64,7 +64,7 @@ class dominoCorrector extends Function() {
                         if (nextStone.id != "" && nextStone.id != undefined) {
                             console.log("Stein liegt neben der Zellele " + row + "|" + column)
                             //Stein neben an
-                            correctAnswer = this.checkNextToStone(stone, nextStone);
+                            correctAnswer = this.checkNextToStone(observedStone, nextStone);
                             correctAnswer = this.addCorrectAnswer(correctAnswer);
 
                         }
@@ -77,14 +77,14 @@ class dominoCorrector extends Function() {
 
                         if (bottomStone.id != "" && bottomStone.id != undefined) {
                             console.log("Stein liegt unter der Zelle " + row + "|" + column)
-                            correctAnswer = this.checkUnderStone(stone, bottomStone);
+                            correctAnswer = this.checkUnderStone(observedStone, bottomStone);
                             correctAnswer = this.addCorrectAnswer(correctAnswer);
                         }
                         if (nextStone.id != "" && nextStone.id != undefined) {
                             console.log("Stein liegt neben der Zellele " + row + "|" + column)
                             //Stein neben an
 
-                            correctAnswer = this.checkNextToStone(stone, nextStone);
+                            correctAnswer = this.checkNextToStone(observedStone, nextStone);
                             correctAnswer = this.addCorrectAnswer(correctAnswer);
 
                         }

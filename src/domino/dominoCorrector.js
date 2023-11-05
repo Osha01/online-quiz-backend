@@ -1,152 +1,55 @@
 
 class dominoCorrector extends Function() {
+    correctAnswers = [];
+    wrongAnswers = [];
+    correctQuestions = [];
     constructor(props) {
         super(props);
     }
-    getErgebnisFormular(body) {
-        let feld = body.feld
-        let questions = body.questions
-        console.log(feld)
+
+    setDataErgebnisFormular(body) {
+        let rows = body.rows
+        this.correctQuestions = body.questions
+        console.log(rows)
         console.log(questions)
 
-        let correctAnswers = this.getCorrectAnswers(feld, questions)
-        let wrongAnswers = this.getWrongAnswers(correctAnswers, questions)
+        this.correctAnswers = this.getCorrectAnswers(rows)
+        this.wrongAnswers = this.getWrongAnswers()
 
-        let res = { correctAnswers: correctAnswers, wrongAnswers: wrongAnswers }
-        console.log("correct" + correctAnswers)
-        console.log("wrong" + wrongAnswers)
+        let res = { correctAnswers: this.correctAnswers, wrongAnswers: this.wrongAnswers }
+        console.log("correct" + this.correctAnswers)
+        console.log("wrong" + this.wrongAnswers)
         return res;
     }
 
-    getCorrectAnswers(feld, questions) {
-        let ausrichtungStein
-        let correctAnswers = []
-        let wrongAnswers = []
-        let frage;
-        let antwort;
-        console.log("Start Tour durch das Feld ...")
-        //Feld durchlaufen
-        for (let i = 0; i < feld.length; i++) {
-            for (let j = 0; j < feld[i].zellen.length; j++) {
+    getCorrectAnswers(rows) {
+        console.log("Start Tour durch das rows ...")
+        //rows durchlaufen
+        //Zeilen: 
+        for (let i = 0; i < rows.length; i++) {
+            //Spalten: 
+            for (let j = 0; j < rows[i].columns.length; j++) {
                 console.log("zelle " + i + "|" + j + " wird angeschaut. ")
-                let zelle = feld[i].zellen[j]
+                let zelle = rows[i].columns[j]
 
                 if (zelle.stone.id != "") {
-                    if (i == feld.length - 1 && j == feld[i].zellen[j].length - 1) {
-                        //letzte zellen nichts mehr machen
+                    console.log("Es liegt ein Stein: " + zelle.stone)
+
+                    if (i == rows.length - 1 && j == rows[i].columns[j].length - 1) {
+                        //letzte columns nichts mehr machen
                         console.log("Ist die letzte Zelle")
-                    } else if (i == feld.length - 1) {
-                        //letzte zeile nicht unten drunter suchen
-                        console.log("Ist in der letzten zeile nicht unten schauen")
 
-                        if (feld[i].zellen[j + 1].stone.id != "") {
-                            console.log("zelle nebendran " + i + "|" + j + 1 + " hat einen Stein")
+                    } else {
 
-                            //Stein neben an
-                            ausrichtungStein = this.getStoneAusrichtung(feld[i].stone[j].stone)
-                            let nebenStein = this.getStoneAusrichtung(feld[i].stone[j + 1].stone)
-                            let ok = this.getNachbarNebenRichtung(nebenStein)
-                            console.log("Ausrichtungen die Erlaubt sind " + ok + " und die vom Nachbarn " + nebenStein)
 
-                            //Steine liegen richtig zueinander
-                            if (ok.includes(nebenStein)) {
-                                console.log("Ist erlaubt ")
-
-                                //Frage und Antwort stimmen
-                                frage = feld[i].zellen[j].stone.frage
-                                antwort = feld[i].zellen[j + 1].stone.antwort
-                                console.log("frage1 " + frage + "  antwort1" + antwort)
-                                if (this.frageStimmt(frage, antwort, questions)) {
-                                    correctAnswers.push({ frage: frage, antwort: antwort })
-                                    console.log("STimmt 1")
-                                }
-                                console.log("umgekehrt frage2 " + frage + "  antwort2" + antwort)
-                                frage = feld[i].zellen[j + 1].stone.frage
-                                antwort = feld[i].zellen[j].stone.antwort
-                                if (this.frageStimmt(frage, antwort, questions)) {
-                                    console.log("STimmt 2")
-                                    correctAnswers.push({ frage: frage, antwort: antwort })
-                                }
-                            }
-                        }
-                    } else if (j == feld[i].length - 1) {
-                        console.log("Zelle ist in der letzten Spalte")
-                        //letzte Spalte nicht neben dran suchen 
                         //nächste Zeile ein Stein?
-                        if (feld[i + 1].zellen[j].stone.id != "") {
-                            console.log("zelle " + i + 1 + "|" + j + " hat ein Stein ")
-
-                            ausrichtungStein = this.getStoneAusrichtung(feld[i].stone[j].stone)
-                            let untererStein = this.getStoneAusrichtung(feld[i + 1].stone[j].stone)
-                            let ok = this.getNachbarUntenRichtung(untererStein)
-                            console.log("Ausrichtungen die Erlaubt sind " + ok + " und die vom Nachbarn " + untererStein)
-                            if (ok.includes(untererStein)) {
-                                //Steine liegen richtig zueinander
-                                let frage = feld[i].zellen[j].stone.frage
-                                let antwort = feld[i + 1].zellen[j].stone.antwort
-                                console.log("frage1 " + frage + "  antwort1" + antwort)
-                                if (this.frageStimmt(frage, antwort, questions)) {
-                                    console.log("STimmt 1")
-                                    correctAnswers.push({ frage: frage, antwort: antwort })
-                                }
-                                frage = feld[i + 1].zellen[j].stone.frage
-                                antwort = feld[i].zellen[j].stone.antwort
-                                console.log("umgekehrt frage2 " + frage + "  antwort2" + antwort)
-                                if (this.frageStimmt(frage, antwort, questions)) {
-                                    console.log("STimmt 2")
-                                    correctAnswers.push({ frage: frage, antwort: antwort })
-                                }
-                            }
+                        if (i != rows.length - 1 && rows[i + 1].columns[j].stone.id != "") {
+                            console.log("Unten suchen erlaubt Zelle " + i + "|" + j)
                         }
-                    }
-                    else {
-                        console.log("Normale Zelle " + i + "|" + j)
-                        //nächste Zeile ein Stein?
-                        if (feld[i + 1].zellen[j].stone.id != "") {
-                            console.log("Stein unten drunter " + i + 1 + "|" + j)
-                            ausrichtungStein = this.getStoneAusrichtung(feld[i].stone[j].stone)
-                            let untererStein = this.getStoneAusrichtung(feld[i + 1].stone[j].stone)
-                            let ok = this.getNachbarUntenRichtung(untererStein)
-                            if (ok.includes(untererStein)) {
-                                //Steine liegen richtig zueinander
-                                let frage = feld[i].zellen[j].stone.frage
-                                let antwort = feld[i + 1].zellen[j].stone.antwort
-                                console.log("frage1 " + frage + "  antwort1" + antwort)
-                                if (this.frageStimmt(frage, antwort, questions)) {
-                                    correctAnswers.push({ frage: frage, antwort: antwort })
-                                }
-                                frage = feld[i + 1].zellen[j].stone.frage
-                                antwort = feld[i].zellen[j].stone.antwort
-                                console.log("umgekehrt frage2 " + frage + "  antwort2" + antwort)
-                                if (this.frageStimmt(frage, antwort, questions)) {
-                                    console.log("STimmt 2")
-                                    correctAnswers.push({ frage: frage, antwort: antwort })
-                                }
-                            }
-                        }
-                        if (feld[i].zellen[j + 1].stone.id != "") {
-                            console.log("zelle " + i + "|" + j + 1 + " nebendran hat einen Stein")
+                        if (j != rows[i].length - 1 && rows[i].columns[j + 1].stone.id != "") {
+                            console.log(" unten suchen erlaubt zelle " + i + "|" + j)
                             //Stein neben an
-                            ausrichtungStein = this.getStoneAusrichtung(feld[i].stone[j].stone)
-                            let nebenStein = this.getStoneAusrichtung(feld[i + 1].stone[j].stone)
-                            let ok = this.getNachbarUntenRichtung(untererStein)
-                            if (ok.includes(untererStein)) {
-                                //Steine liegen richtig zueinander
-                                frage = feld[i].zellen[j].stone.frage
-                                antwort = feld[i + 1].zellen[j].stone.antwort
-                                console.log("frage1 " + frage + "  antwort1" + antwort)
-                                if (this.frageStimmt(frage, antwort, questions)) {
-                                    console.log("STimmt 1")
-                                    correctAnswers.push({ frage: frage, antwort: antwort })
-                                }
-                                frage = feld[i + 1].zellen[j].stone.frage
-                                antwort = feld[i].zellen[j].stone.antwort
-                                console.log("umgekehrt frage2 " + frage + "  antwort2" + antwort)
-                                if (this.frageStimmt(frage, antwort, questions)) {
-                                    console.log("STimmt 2")
-                                    correctAnswers.push({ frage: frage, antwort: antwort })
-                                }
-                            }
+
 
                         }
                     }
@@ -155,24 +58,72 @@ class dominoCorrector extends Function() {
             }
         }
     }
-    getWrongAnswers(correctAnswers, questions) {
-        let wList = []
+    checkNextToStone(stone, nextStone) {
+        console.log("Stein: " + stone)
+        console.log("Stein neben an: " + nextStone)
 
-        if (correctAnswers == undefined) {
-            return questions;
-        } else {
-            for (let i = 0; i < question.length; i++) {
-                if (correctAnswers.forEach(answer => answer.frage != questions[i].frage)) {
-                    console.log("Nicht in der Liste" + questions[i])
-                    wList.push(questions[i])
-                }
+        ausrichtungStein = this.getStoneAusrichtung(rows[i].stone[j].stone)
+        let nebenStein = this.getStoneAusrichtung(rows[i + 1].stone[j].stone)
+        let ok = this.getNachbarUntenRichtung(untererStein)
+
+        if (ok.includes(untererStein)) {
+            //Steine liegen richtig zueinander
+            frage = stone.frage
+            antwort = nextStone.antwort
+            console.log("frage1 " + frage + "  antwort1" + antwort)
+            if (this.frageStimmt(frage, antwort, questions)) {
+                console.log("STimmt 1")
+                this.correctAnswers.push({ frage: frage, antwort: antwort })
             }
+            frage = nextStone.frage
+            antwort = stone.antwort
+            console.log("umgekehrt frage2 " + frage + "  antwort2" + antwort)
+            if (this.frageStimmt(frage, antwort, questions)) {
+                console.log("STimmt 2")
+                this.correctAnswers.push({ frage: frage, antwort: antwort })
+            }
+        }
+    }
+    checkUnderStone(stone, bottomStone) {
+        console.log("Stein unten drunter " + i + 1 + "|" + j)
+        ausrichtungStein = this.getStoneAusrichtung(rows[i].stone[j].stone)
+        let untererStein = this.getStoneAusrichtung(rows[i + 1].stone[j].stone)
+        let ok = this.getNachbarUntenRichtung(untererStein)
+        if (ok.includes(untererStein)) {
+            //Steine liegen richtig zueinander
+            let frage = stone.frage
+            let antwort = bottomStone.antwort
+            console.log("frage1 " + frage + "  antwort1" + antwort)
+            if (this.frageStimmt(frage, antwort)) {
+                this.correctAnswers.push({ frage: frage, antwort: antwort })
+            }
+            frage = bottomStone.frage
+            antwort = stone.antwort
+            console.log("umgekehrt frage2 " + frage + "  antwort2" + antwort)
+            if (this.frageStimmt(frage, antwort)) {
+                console.log("STimmt 2")
+                this.correctAnswers.push({ frage: frage, antwort: antwort })
+            }
+        }
+    }
+
+    getWrongAnswers() {
+        this.wrongAnswers = this.correctQuestions;
+
+        if (this.correctAnswers != undefined && this.correctAnswers != []) {
+            this.correctAnswers.forEach(answer => {
+                this.correctQuestions.forEach(question, index => {
+                    if (question.frage == answer.frage) {
+                        deleteQuestionFromWrongAnswers(index)
+                    }
+                });
+            });
         }
         return wList;
     }
-    frageStimmt(frage, antwort, questions) {
-        for (let i = 0; i < questions.length; i++) {
-            if (questions[i].frage == frage && questions[i].antwort == antwort) {
+    frageStimmt(frage, antwort) {
+        for (let i = 0; i < this.correctQuestions.length; i++) {
+            if (this.correctQuestions[i].frage == frage && this.correctQuestions[i].antwort == antwort) {
                 return true;
             }
         }
@@ -292,6 +243,14 @@ class dominoCorrector extends Function() {
                 return ["w", "nw", "sw"]
         }
     }
-
+    deleteQuestionFromWrongAnswers(index) {
+        let nList = []
+        for (let i = 0; i < this.wrongAnswers.length; ++i) {
+            if (i != index) {
+                nList.push(this.wrongAnswers[i])
+            }
+        }
+        this.wrongAnswers = nList;
+    }
 }
 module.exports = new dominoCorrector();

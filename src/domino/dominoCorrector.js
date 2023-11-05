@@ -75,8 +75,8 @@ class dominoCorrector extends Function() {
         }
     }
     checkNextToStone(stone, nextStone) {
-        let frage;
-        let antwort;
+        let question;
+        let answer;
 
         console.log("Stein: " + stone)
         console.log("Stein neben an: " + nextStone)
@@ -90,19 +90,19 @@ class dominoCorrector extends Function() {
 
         if (ok.includes(directionNextStone)) {
             //Steine liegen richtig zueinander
-            frage = stone.frage
-            antwort = nextStone.antwort
-            console.log("frage1 " + frage + "  antwort1" + antwort)
-            if (this.frageStimmt(frage, antwort)) {
+            question = stone.
+                answer = nextStone.answer
+            console.log("frage1 " + question + "  antwort1" + answer)
+            if (this.correctQA(question, answer)) {
                 console.log("STimmt 1")
-                this.correctAnswers.push({ frage: frage, antwort: antwort })
+                this.correctAnswers.push({ question: question, answer: answer })
             }
-            frage = nextStone.frage
-            antwort = stone.antwort
-            console.log("umgekehrt frage2 " + frage + "  antwort2" + antwort)
-            if (this.frageStimmt(frage, antwort)) {
+            question = nextStone.question
+            answer = stone.answer
+            console.log("umgekehrt frage2 " + question + "  antwort2" + answer)
+            if (this.correctQA(question, answer)) {
                 console.log("STimmt 2")
-                this.correctAnswers.push({ frage: frage, antwort: antwort })
+                this.correctAnswers.push({ question: question, answer: answer })
             }
         }
     }
@@ -112,18 +112,18 @@ class dominoCorrector extends Function() {
         let ok = this.getNachbarUntenRichtung(directionStone)
         if (ok.includes(directionBottomStone)) {
             //Steine liegen richtig zueinander
-            let frage = stone.frage
-            let antwort = bottomStone.antwort
-            console.log("frage1 " + frage + "  antwort1" + antwort)
-            if (this.frageStimmt(frage, antwort)) {
-                this.correctAnswers.push({ frage: frage, antwort: antwort })
+            let question = stone.question
+            let answer = bottomStone.answer
+            console.log("frage1 " + question + "  antwort1" + answer)
+            if (this.correctQA(question, answer)) {
+                this.correctAnswers.push({ question: question, answer: answer })
             }
-            frage = bottomStone.frage
-            antwort = stone.antwort
-            console.log("umgekehrt frage2 " + frage + "  antwort2" + antwort)
-            if (this.frageStimmt(frage, antwort)) {
+            question = bottomStone.question
+            answer = stone.answer
+            console.log("umgekehrt frage2 " + question + "  antwort2" + answer)
+            if (this.correctQA(question, answer)) {
                 console.log("STimmt 2")
-                this.correctAnswers.push({ frage: frage, antwort: antwort })
+                this.correctAnswers.push({ question: question, answer: answer })
             }
         }
     }
@@ -134,7 +134,7 @@ class dominoCorrector extends Function() {
         if (this.correctAnswers != undefined && this.correctAnswers != []) {
             this.correctAnswers.forEach(answer => {
                 this.correctQuestions.forEach(question, index => {
-                    if (question.frage == answer.frage) {
+                    if (question.question == answer.question) {
                         deleteQuestionFromWrongAnswers(index)
                     }
                 });
@@ -143,9 +143,12 @@ class dominoCorrector extends Function() {
         return this.wrongAnswers;
 
     }
-    frageStimmt(frage, antwort) {
+    correctQA(question, answer) {
         for (let i = 0; i < this.correctQuestions.length; i++) {
-            if (this.correctQuestions[i].frage == frage && this.correctQuestions[i].antwort == antwort) {
+            if (question != undefined
+                && answer != undefined
+                && this.correctQuestions[i].question == question
+                && this.correctQuestions[i].answer == answer) {
                 return true;
             }
         }

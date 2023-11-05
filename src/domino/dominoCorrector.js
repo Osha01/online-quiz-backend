@@ -77,16 +77,13 @@ class dominoCorrector extends Function() {
 
                         if (bottomStone.id != "" && bottomStone.id != undefined) {
                             console.log("Stein liegt unter der Zelle " + row + "|" + column)
-                            correctAnswer = this.checkUnderStone(observedStone, bottomStone);
-                            correctAnswer = this.addCorrectAnswer(correctAnswer);
+                            this.checkUnderStone(observedStone, bottomStone);
+
                         }
                         if (nextStone.id != "" && nextStone.id != undefined) {
                             console.log("Stein liegt neben der Zellele " + row + "|" + column)
                             //Stein neben an
-
-                            correctAnswer = this.checkNextToStone(observedStone, nextStone);
-                            correctAnswer = this.addCorrectAnswer(correctAnswer);
-
+                            this.checkNextToStone(observedStone, nextStone);
                         }
                     }
                 }
@@ -94,7 +91,7 @@ class dominoCorrector extends Function() {
         }
     }
     checkNextToStone(stone, nextStone) {
-        let correctAnswer;
+        let correctAnswer = false;
         let directionStone = this.getStoneAusrichtung(stone)
         let directionNextStone = this.getStoneAusrichtung(nextStone)
         let ok = this.getNachbarNebenRichtung(directionStone)
@@ -128,15 +125,17 @@ class dominoCorrector extends Function() {
         console.log("frage1 " + question1 + "  antwort1 " + answer1)
         if (this.isQACorrect(question1, answer1)) {
             console.log("Found " + question1 + answer1)
-            return { question: question1, answer: answer1, key: 1 }
+            this.addCorrectAnswer(question1, answer1);
+            return true;
         } else if (this.isQACorrect(question2, answer2)) {
             console.log("Found " + question2 + answer2)
             return { question: question2, answer: answer2, key: 4 }
         }
-        return undefined;
+        return false;
     }
     addCorrectAnswer(correctAnswer) {
         if (correctAnswer != undefined) {
+            console.log("wird hinzugefügt " + correctAnswer)
             this.correctAnswers.push(correctAnswer)
         }
         return undefined;
@@ -147,6 +146,7 @@ class dominoCorrector extends Function() {
         if (this.correctAnswers != undefined && this.correctAnswers != []) {
             this.correctQuestions.forEach(element0 => {
                 if (this.correctAnswers.find(element => element.question == element0.props.question) == undefined) {
+                    console.log("Frage wird Wrong Ansers hinzugefügt " + element0.props.question)
                     this.wrongAnswers.push({ question: element0.props.question, answer: element0.props.answer, key: "Wrong" })
                 }
 

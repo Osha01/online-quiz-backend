@@ -18,7 +18,7 @@ class dominoMessenger extends Function {
     const channel = ably.channels.get(channelId);
     // Ein Spieler, 8 Fragen
     if (anzahlUsers == 1) {
-      specificQ = copyQ;
+      console.log("nur ein Spieler")
       let body = {
         game: "domino",
         users: users,
@@ -26,12 +26,13 @@ class dominoMessenger extends Function {
           correctQuestions: correctQuestions,
           laenge: laenge,
           activePlayer: users[0],
-          questions: specificQ,
+          questions: switchedList,
         },
       };
       await channel.publish("start" + users[0], body);
       console.log("gesendet an " + users[0]);
     } else {
+      console.log("mehr Spieler als 1")
       //Mehr Spieler jeder 4 Fragen
       for (let i = 0; i < anzahlUsers; i++) {
         for (let j = 0; j < 4; j++) {

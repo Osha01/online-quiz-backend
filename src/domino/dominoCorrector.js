@@ -11,7 +11,7 @@ class dominoCorrector extends Function() {
         let rows = body.rows
         this.correctQuestions = body.questions
         console.log(rows)
-        console.log(questions)
+        console.log(this.correctQuestions)
 
         this.correctAnswers = this.getCorrectAnswers(rows)
         this.wrongAnswers = this.getWrongAnswers()

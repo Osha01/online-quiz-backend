@@ -98,14 +98,17 @@ class dominoCorrector extends Function() {
             if (this.correctQA(question, answer)) {
                 console.log("STimmt 1")
                 this.correctAnswers.push({ question: question, answer: answer, key: "o" })
+
+            } else {
+                question = nextStone.question
+                answer = stone.answer
+                console.log("umgekehrt frage2 " + question + "  antwort2 " + answer)
+                if (this.correctQA(question, answer)) {
+                    console.log("STimmt 2")
+                    this.correctAnswers.push({ question: question, answer: answer, key: "o" })
+                }
             }
-            question = nextStone.question
-            answer = stone.answer
-            console.log("umgekehrt frage2 " + question + "  antwort2 " + answer)
-            if (this.correctQA(question, answer)) {
-                console.log("STimmt 2")
-                this.correctAnswers.push({ question: question, answer: answer, key: "o" })
-            }
+
         }
     }
     checkUnderStone(stone, bottomStone) {
@@ -146,18 +149,19 @@ class dominoCorrector extends Function() {
 
     }
     correctQA(observedQuestion, observedAnswer) {
+        correct = false;
         this.correctQuestions.forEach((q) => {
-            console.log(q.props.question + "  " + q.props.answer);
             console.log(q.props.question + " == " + observedQuestion);
             if (q.props.question == observedQuestion) {
                 console.log(q.props.question + " == " + observedAnswer);
                 if (observedAnswer == q.props.answer) {
                     console.log("Found")
+                    correct = true;
                     return true;
                 }
             }
-        })
-        return false;
+        });
+        return correct;
 
     }
     getStoneAusrichtung(stone) {

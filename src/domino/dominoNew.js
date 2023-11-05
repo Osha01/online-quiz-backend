@@ -10,7 +10,7 @@ class dominoNew extends Function {
     let anzahlFragen = body.userCount * 4;
     let correctQuestions = [];
     let item;
-    let laenge = 3;
+    let laenge = 6;
 
     if (anzahlFragen < 8) {
       for (let i = 0; i < 8; i++) {

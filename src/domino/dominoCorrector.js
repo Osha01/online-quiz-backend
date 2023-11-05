@@ -22,27 +22,34 @@ class dominoCorrector extends Function() {
 
     getCorrectAnswers(rows) {
         console.log("Start Tour durch das rows ...")
+        let bottomStone;
+        let nextStone;
+        let observedStone;
         //rows durchlaufen
         //Zeilen: 
         for (let i = 0; i < rows.length; i++) {
             //Spalten: 
             for (let j = 0; j < rows[i].columns.length; j++) {
                 console.log("zelle " + i + "|" + j + " wird angeschaut. ")
-                let observedStone = rows[i].columns[j].stone;
+                observedStone = rows[i].columns[j].stone;
 
                 if (observedStone.id != "") {
                     console.log("Es liegt ein Stein: " + observedStone.id)
-
+                    //letzte Zelle nichts mehr machen
                     if (i == (rows.length - 1) && j == (rows[i].columns.length - 1)) {
-                        //letzte columns nichts mehr machen
+
                         console.log("Ist die letzte Zelle")
 
-                    } else if (i == (rows.length - 1)) {
+                    }
+                    //letzte Zeile nicht nach unten schauen 
+                    else if (i == (rows.length - 1)) {
                         bottomStone = rows[i + 1].columns[j];
                         if (bottomStone.id != "" || bottomStone.id != undefined) {
                             console.log("Stein liegt unter der Zelle " + i + "|" + j)
                         }
-                    } else if (i == (rows[i].length - 1)) {
+                    }
+                    // letzte Spalte nicht nach rechts schauen
+                    else if (i == (rows[i].length - 1)) {
                         nextStone = rows[i].columns[j + 1].stone;
                         if (nextStone.id != "" || nextStone.id != undefined) {
                             console.log("Stein liegt neben der Zellele " + i + "|" + j)
@@ -50,8 +57,8 @@ class dominoCorrector extends Function() {
                             this.checkNextToStone(observedStone, nextStone)
                         }
                     } else {
-                        let bottomStone = rows[(i + 1)].columns[j].stone;
-                        let nextStone = rows[i].columns[(j + 1)].stone;
+                        bottomStone = rows[(i + 1)].columns[j].stone;
+                        nextStone = rows[i].columns[(j + 1)].stone;
                         if (bottomStone.id != "" || bottomStone.id != undefined) {
                             console.log("Stein liegt unter der Zelle " + i + "|" + j)
                         }

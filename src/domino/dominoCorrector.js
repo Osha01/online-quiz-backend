@@ -30,7 +30,7 @@ class dominoCorrector extends Function() {
                 console.log("zelle " + i + "|" + j + " wird angeschaut. ")
                 let stone = rows[i].columns[j].stone;
 
-                if (zelle.stone.id != "") {
+                if (stone.id != "") {
                     console.log("Es liegt ein Stein: " + stone.key)
 
                     if (i == (rows.length - 1) && j == (rows[i].columns.length - 1)) {

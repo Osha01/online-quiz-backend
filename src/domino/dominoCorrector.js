@@ -62,23 +62,23 @@ class dominoCorrector extends Function() {
         console.log("Stein: " + stone)
         console.log("Stein neben an: " + nextStone)
 
-        ausrichtungStein = this.getStoneAusrichtung(rows[i].stone[j].stone)
-        let nebenStein = this.getStoneAusrichtung(rows[i + 1].stone[j].stone)
-        let ok = this.getNachbarUntenRichtung(untererStein)
+        let directionStone = this.getStoneAusrichtung(stone)
+        let directionNextStone = this.getStoneAusrichtung(nextStone)
+        let ok = this.getNachbarNebenRichtung(directionStone)
 
-        if (ok.includes(untererStein)) {
+        if (ok.includes(directionNextStone)) {
             //Steine liegen richtig zueinander
             frage = stone.frage
             antwort = nextStone.antwort
             console.log("frage1 " + frage + "  antwort1" + antwort)
-            if (this.frageStimmt(frage, antwort, questions)) {
+            if (this.frageStimmt(frage, antwort)) {
                 console.log("STimmt 1")
                 this.correctAnswers.push({ frage: frage, antwort: antwort })
             }
             frage = nextStone.frage
             antwort = stone.antwort
             console.log("umgekehrt frage2 " + frage + "  antwort2" + antwort)
-            if (this.frageStimmt(frage, antwort, questions)) {
+            if (this.frageStimmt(frage, antwort)) {
                 console.log("STimmt 2")
                 this.correctAnswers.push({ frage: frage, antwort: antwort })
             }
@@ -86,10 +86,10 @@ class dominoCorrector extends Function() {
     }
     checkUnderStone(stone, bottomStone) {
         console.log("Stein unten drunter " + i + 1 + "|" + j)
-        ausrichtungStein = this.getStoneAusrichtung(rows[i].stone[j].stone)
-        let untererStein = this.getStoneAusrichtung(rows[i + 1].stone[j].stone)
-        let ok = this.getNachbarUntenRichtung(untererStein)
-        if (ok.includes(untererStein)) {
+        let directionStone = this.getStoneAusrichtung(stone)
+        let directionBottomStone = this.getStoneAusrichtung(bottomStone)
+        let ok = this.getNachbarUntenRichtung(directionStone)
+        if (ok.includes(directionBottomStone)) {
             //Steine liegen richtig zueinander
             let frage = stone.frage
             let antwort = bottomStone.antwort
@@ -252,6 +252,9 @@ class dominoCorrector extends Function() {
             }
         }
         this.wrongAnswers = nList;
+    }
+    printStone(stone) {
+        console.log("Stein: " + stone.question + ", " + stone.answer)
     }
 }
 module.exports = new dominoCorrector();

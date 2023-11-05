@@ -3,12 +3,12 @@ class dominoMessenger extends Function {
     super(props);
   }
 
-  async sendFirstMessage(questions, users, room, laenge) {
+  async sendFirstMessage(switchedList, correctQuestions, users, room, laenge) {
     console.log("messageStart");
     const Ably = require("ably");
     const ably = new Ably.Realtime.Promise("0sa0Qw.VDigAw:OeO1LYUxxUM7VIF4bSsqpHMSZlqMYBxN-cxS0fKeWDE");
     let anzahlUsers = users.length
-    let copyQ = questions;
+    let copyQ = switchedList;
     let specificQ = []
     let rindex;
     let item;
@@ -32,20 +32,18 @@ class dominoMessenger extends Function {
         game: "domino",
         users: users,
         data: {
-          correctQuestions: questions,
+          correctQuestions: correctQuestions,
           laenge: laenge,
           activePlayer: users[0],
-          fragen: specificQ,
+          questions: specificQ,
         },
       };
       await channel.publish("start" + users[i], body);
       console.log("gesendet an " + users[i]);
-
     }
     ably.close();
-    specificQ = [];
-  }
 
+  }
   getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }

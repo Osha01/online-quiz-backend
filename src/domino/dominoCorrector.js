@@ -157,19 +157,19 @@ class dominoCorrector extends Function() {
         let d = stone.d
 
         if (h && fO && !d) {
-            return "n"
+            return "w"
         } else if (!h && fO && d) {
             return "no"
         } else if (!h && !fO && !d) {
-            return "o"
+            return "s"
         } else if (h && !fO && d) {
             return "so"
         } else if (h && !fO && !d) {
-            return "s"
+            return "o"
         } else if (!h && !fO && d) {
             return "sw"
         } else if (!h && fO && !d) {
-            return "w"
+            return "n"
         } else if (h && fO && d) {
             return "nw"
         }

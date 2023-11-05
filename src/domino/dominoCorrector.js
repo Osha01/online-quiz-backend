@@ -41,7 +41,7 @@ class dominoCorrector extends Function() {
                         let bottomStone
                         let nextStone
                         //nächste Zeile ein Stein?
-                        if (i != (rows.length - 1) && i != (rows[i].length - 1)) {
+                        if (i != (rows.length - 1) && j != (rows[i].length - 1)) {
                             bottomStone = rows[(i + 1)].columns[j].stone;
                             nextStone = rows[i].columns[(j + 1)].stone;
                             if (bottomStone.id != "" || bottomStone.id != undefined) {

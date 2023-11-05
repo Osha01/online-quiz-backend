@@ -37,37 +37,30 @@ class dominoCorrector extends Function() {
                         //letzte columns nichts mehr machen
                         console.log("Ist die letzte Zelle")
 
-                    } else {
-                        let bottomStone
-                        let nextStone
-                        //nächste Zeile ein Stein?
-                        if (i != (rows.length - 1) && j != (rows[i].length - 1)) {
-                            bottomStone = rows[(i + 1)].columns[j].stone;
-                            nextStone = rows[i].columns[(j + 1)].stone;
-                            if (bottomStone.id != "" || bottomStone.id != undefined) {
-                                console.log("Stein liegt unter der Zelle " + i + "|" + j)
-                            }
-                            if (nextStone.id != "") {
-                                console.log("Stein liegt neben der Zellele " + i + "|" + j)
-                                //Stein neben an
-                                this.checkNextToStone(observedStone, nextStone)
-                            }
-                        } else if (i == (rows.length - 1)) {
-                            bottomStone = rows[i + 1].columns[j];
-                            if (bottomStone.id != "" || bottomStone.id != undefined) {
-                                console.log("Stein liegt unter der Zelle " + i + "|" + j)
-                            }
-                        } else if (i == (rows[i].length - 1)) {
-                            nextStone = rows[i].columns[j + 1].stone;
-                            if (nextStone.id != "" || nextStone.id != undefined) {
-                                console.log("Stein liegt neben der Zellele " + i + "|" + j)
-                                //Stein neben an
-                                this.checkNextToStone(observedStone, nextStone)
-                            }
+                    } else if (i == (rows.length - 1)) {
+                        bottomStone = rows[i + 1].columns[j];
+                        if (bottomStone.id != "" || bottomStone.id != undefined) {
+                            console.log("Stein liegt unter der Zelle " + i + "|" + j)
                         }
-
+                    } else if (i == (rows[i].length - 1)) {
+                        nextStone = rows[i].columns[j + 1].stone;
+                        if (nextStone.id != "" || nextStone.id != undefined) {
+                            console.log("Stein liegt neben der Zellele " + i + "|" + j)
+                            //Stein neben an
+                            this.checkNextToStone(observedStone, nextStone)
+                        }
+                    } else {
+                        let bottomStone = rows[(i + 1)].columns[j].stone;
+                        let nextStone = rows[i].columns[(j + 1)].stone;
+                        if (bottomStone.id != "" || bottomStone.id != undefined) {
+                            console.log("Stein liegt unter der Zelle " + i + "|" + j)
+                        }
+                        if (nextStone.id != "") {
+                            console.log("Stein liegt neben der Zellele " + i + "|" + j)
+                            //Stein neben an
+                            this.checkNextToStone(observedStone, nextStone)
+                        }
                     }
-
                 }
             }
         }

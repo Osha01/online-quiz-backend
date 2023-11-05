@@ -156,52 +156,28 @@ class dominoCorrector extends Function() {
         let d = stone.d
 
         if (h && fO && !d) {
-            //"Von Zustand 1 nach 2")
-            h = false;
-            fO = true;
-            d = true;
+            //"Von Zustand 1 nach 2"
             return "n"
         } else if (!h && fO && d) {
             //"Von Zustand 2 nach 3")
-            fO = false
-            h = false
-            d = false
             return "no"
         } else if (!h && !fO && !d) {
             //"Von Zustand 3 nach 4")
-            h = true;
-            fO = false;
-            d = true
             return "o"
         } else if (h && !fO && d) {
             //"Von Zustand 4 nach 5")
-            h = true;
-            fO = false;
-            d = false
             return "so"
         } else if (h && !fO && !d) {
             //"Von Zustand 5 nach 6")
-            fO = false
-            h = false
-            d = true
             return "s"
         } else if (!h && !fO && d) {
             //"Von Zustand 6 nach 7")
-            fO = true
-            h = false
-            d = false
             return "sw"
         } else if (!h && fO && !d) {
             //"Von Zustand 7 nach 8")
-            fO = true
-            h = true
-            d = true
             return "w"
         } else if (h && fO && d) {
             //"Von Zustand 8 nach 1")
-            fO = true
-            h = true
-            d = false
             return "nw"
         }
         else {

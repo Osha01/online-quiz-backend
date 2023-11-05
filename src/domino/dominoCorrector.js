@@ -98,7 +98,7 @@ class dominoCorrector extends Function() {
         let directionStone = this.getStoneAusrichtung(stone)
         let directionNextStone = this.getStoneAusrichtung(nextStone)
         let ok = this.getNachbarUntenRichtung(directionStone)
-
+        console.log(directionNextStone + " " + directionStone + " " + ok)
         if (ok.includes(directionNextStone)) {
             correctAnswer = this.getCorrectAnswer(stone, nextStone)
         }
@@ -109,6 +109,7 @@ class dominoCorrector extends Function() {
         let directionStone = this.getStoneAusrichtung(stone)
         let directionBottomStone = this.getStoneAusrichtung(bottomStone)
         let ok = this.getNachbarUntenRichtung(directionStone)
+        console.log(directionBottomStone + " " + directionStone + " " + ok)
 
         if (ok.includes(directionBottomStone)) {
             //Steine liegen richtig zueinander
@@ -119,18 +120,18 @@ class dominoCorrector extends Function() {
     }
 
     getCorrectAnswer(stone, stoneTwo) {
-        let question = stone.question
-        let answer = stoneTwo.answer
-        console.log("frage1 " + question + "  antwort1 " + answer)
-        if (this.correctQA(question, answer)) {
-            return { question: question, answer: answer, key: 1 }
-        }
-        question = stoneTwo.question
-        answer = stone.answer
-        console.log("umgekehrt frage2 " + question + "  antwort2 " + answer)
-        if (this.correctQA(question, answer)) {
-            console.log("STimmt 2")
-            return { question: question, answer: answer, key: 4 }
+        let question1 = stone.question
+        let answer1 = stoneTwo.answer
+        let question2 = stoneTwo.question
+        let answer2 = stone.answer
+
+        console.log("frage1 " + question1 + "  antwort1 " + answer1)
+        if (this.isQACorrect(question1, answer1)) {
+            console.log("Found " + question1 + answer1)
+            return { question: question1, answer: answer1, key: 1 }
+        } else if (this.isQACorrect(question2, answer2)) {
+            console.log("Found " + question2 + answer2)
+            return { question: question2, answer: answer2, key: 4 }
         }
         return undefined;
     }
@@ -155,20 +156,19 @@ class dominoCorrector extends Function() {
         return this.wrongAnswers;
 
     }
-    correctQA(observedQuestion, observedAnswer) {
-        let correct = false;
+    isQACorrect(observedQuestion, observedAnswer) {
+
         for (const q of this.correctQuestions) {
             console.log(q.props.question + " == " + observedQuestion);
             if (q.props.question == observedQuestion) {
                 console.log(q.props.question + " == " + observedAnswer);
                 if (observedAnswer == q.props.answer) {
                     console.log("Found")
-                    correct = true;
-                    return correct;
+                    return true;
                 }
             }
         }
-        return correct;
+        return false;
 
     }
     getStoneAusrichtung(stone) {

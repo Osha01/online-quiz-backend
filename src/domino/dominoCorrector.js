@@ -13,7 +13,8 @@ class dominoCorrector extends Function() {
         console.log(this.correctQuestions);
 
 
-        this.correctAnswers = this.getCorrectAnswers(rows)
+        this.getCorrectAnswers(rows)
+
         this.wrongAnswers = this.getWrongAnswers()
 
         let res = { correctAnswers: this.correctAnswers, wrongAnswers: this.wrongAnswers }
@@ -27,16 +28,17 @@ class dominoCorrector extends Function() {
         let bottomStone;
         let nextStone;
         let observedStone;
+        let correctAnswer = undefined;
         let lastRow = rows.length - 1;
         let lastColumn = rows[0].columns.length - 1;
-        console.log("lastRow " + lastRow + " lastColumn " + lastColumn)
+
         //rows durchlaufen
-        //Zeilen: 
         for (let row = 0; row < rows.length; row++) {
             //Spalten: 
             for (let column = 0; column < rows[row].columns.length; column++) {
                 console.log("zelle " + row + "|" + column + " wird angeschaut. ")
                 observedStone = rows[row].columns[column].stone;
+
                 if (observedStone.id != "" && observedStone.id != undefined) {
                     console.log("Es liegt ein Stein: " + observedStone.id)
                     //letzte Zelle nichts mehr machen
@@ -46,6 +48,7 @@ class dominoCorrector extends Function() {
                     //letzte Zeile nicht nach unten schauen 
                     else if (column == lastColumn) {
                         bottomStone = rows[row + 1].columns[column];
+
                         console.log(bottomStone.id)
                         if (bottomStone.id != "" && bottomStone.id != undefined) {
                             console.log("Stein liegt unter der Zelle " + row + "|" + column)
@@ -54,41 +57,55 @@ class dominoCorrector extends Function() {
                     // letzte Spalte nicht nach rechts schauen
                     else if (row == lastRow) {
                         nextStone = rows[row].columns[column + 1].stone;
+
                         if (nextStone.id != "" && nextStone.id != undefined) {
                             console.log("Stein liegt neben der Zellele " + row + "|" + column)
                             //Stein neben an
-                            this.checkNextToStone(observedStone, nextStone)
+                            correctAnswer = this.checkNextToStone(stone, nextStone, directionNextStone, directionStone)
+                            if (correctAnswer != undefined) {
+                                this.correctAnswers.push(correctAnswer)
+                            }
                         }
                     } else {
                         bottomStone = rows[(row + 1)].columns[column].stone;
                         nextStone = rows[row].columns[(column + 1)].stone;
+
+                        let directionStone = this.getStoneAusrichtung(stone)
+                        let directionNextStone = this.getStoneAusrichtung(nextStone)
+                        let directionBottomStone = this.getStoneAusrichtung(bottomStone)
+
                         console.log(bottomStone.id + "   " + nextStone.id)
                         if (bottomStone.id != "" && bottomStone.id != undefined) {
                             console.log("Stein liegt unter der Zelle " + row + "|" + column)
+                            correctAnswer = this.checkUnderStone(stone, bottomStone, directionBottomStone, directionStone)
+                            if (correctAnswer != undefined) {
+                                this.correctAnswers.push(correctAnswer)
+                            }
                         }
                         if (nextStone.id != "" && nextStone.id != undefined) {
                             console.log("Stein liegt neben der Zellele " + row + "|" + column)
                             //Stein neben an
-                            this.checkNextToStone(observedStone, nextStone)
+
+                            correctAnswer = this.checkNextToStone(stone, nextStone, directionNextStone, directionStone)
+                            if (correctAnswer != undefined) {
+                                this.correctAnswers.push(correctAnswer)
+                            }
+
                         }
                     }
                 }
             }
         }
     }
-    checkNextToStone(stone, nextStone) {
+    checkNextToStone(stone, nextStone, directionNextStone, directionStone) {
         let question;
         let answer;
+        let i = 0;
 
         console.log("Stein: " + stone)
         console.log("Stein neben an: " + nextStone)
 
-        let directionStone = this.getStoneAusrichtung(stone)
-        console.log(directionStone)
-        let directionNextStone = this.getStoneAusrichtung(nextStone)
-        console.log(directionNextStone)
         let ok = this.getNachbarNebenRichtung(directionStone)
-        console.log(ok)
 
         if (ok.includes(directionNextStone)) {
             //Steine liegen richtig zueinander
@@ -97,7 +114,7 @@ class dominoCorrector extends Function() {
             console.log("frage1 " + question + "  antwort1 " + answer)
             if (this.correctQA(question, answer)) {
                 console.log("STimmt 1")
-                this.correctAnswers.push({ question: question, answer: answer, key: "o" })
+                return { question: question, answer: answer, key: i++ }
 
             } else {
                 question = nextStone.question
@@ -105,15 +122,13 @@ class dominoCorrector extends Function() {
                 console.log("umgekehrt frage2 " + question + "  antwort2 " + answer)
                 if (this.correctQA(question, answer)) {
                     console.log("STimmt 2")
-                    this.correctAnswers.push({ question: question, answer: answer, key: "o" })
+                    return { question: question, answer: answer, key: i++ }
                 }
             }
-
         }
+        return undefined;
     }
-    checkUnderStone(stone, bottomStone) {
-        let directionStone = this.getStoneAusrichtung(stone)
-        let directionBottomStone = this.getStoneAusrichtung(bottomStone)
+    checkUnderStone(stone, bottomStone, directionBottomStone, directionStone) {
         let ok = this.getNachbarUntenRichtung(directionStone)
         if (ok.includes(directionBottomStone)) {
             //Steine liegen richtig zueinander
@@ -121,14 +136,14 @@ class dominoCorrector extends Function() {
             let answer = bottomStone.answer
             console.log("frage1 " + question + "  antwort1 " + answer)
             if (this.correctQA(question, answer)) {
-                this.correctAnswers.push({ question: question, answer: answer, key: "o" })
+                return { question: question, answer: answer, key: 1 }
             }
             question = bottomStone.question
             answer = stone.answer
             console.log("umgekehrt frage2 " + question + "  antwort2 " + answer)
             if (this.correctQA(question, answer)) {
                 console.log("STimmt 2")
-                this.correctAnswers.push({ question: question, answer: answer, key: "o" })
+                return { question: question, answer: answer, key: 4 }
             }
         }
     }

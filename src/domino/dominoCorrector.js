@@ -53,7 +53,7 @@ class dominoCorrector extends Function() {
                             console.log("Stein liegt unter der Zelle " + row + "|" + column)
 
                             correctAnswer = this.checkUnderStone(observedStone, bottomStone);
-                            correctAnswer = this.addCorrectAnswer(correctAnswer);
+                            this.addCorrectAnswer(correctAnswer)
 
                         }
                     }
@@ -65,7 +65,7 @@ class dominoCorrector extends Function() {
                             console.log("Stein liegt neben der Zellele " + row + "|" + column)
                             //Stein neben an
                             correctAnswer = this.checkNextToStone(observedStone, nextStone);
-                            correctAnswer = this.addCorrectAnswer(correctAnswer);
+                            this.addCorrectAnswer(correctAnswer)
 
                         }
                     }
@@ -77,13 +77,15 @@ class dominoCorrector extends Function() {
 
                         if (bottomStone.id != "" && bottomStone.id != undefined) {
                             console.log("Stein liegt unter der Zelle " + row + "|" + column)
-                            this.checkUnderStone(observedStone, bottomStone);
+                            correctAnswer = this.checkUnderStone(observedStone, bottomStone);
+                            this.addCorrectAnswer(correctAnswer)
 
                         }
                         if (nextStone.id != "" && nextStone.id != undefined) {
                             console.log("Stein liegt neben der Zellele " + row + "|" + column)
                             //Stein neben an
-                            this.checkNextToStone(observedStone, nextStone);
+                            correctAnswer = this.checkNextToStone(observedStone, nextStone);
+                            this.addCorrectAnswer(correctAnswer)
                         }
                     }
                 }
@@ -91,23 +93,23 @@ class dominoCorrector extends Function() {
         }
     }
     checkNextToStone(stone, nextStone) {
-        let correctAnswer = false;
+        let correctAnswer = undefined;
         let directionStone = this.getStoneAusrichtung(stone)
         let directionNextStone = this.getStoneAusrichtung(nextStone)
         let ok = this.getNachbarNebenRichtung(directionStone)
         console.log(directionNextStone + " " + directionStone + " " + ok)
         if (ok.includes(directionNextStone)) {
-            correctAnswer = this.getCorrectAnswer(stone, nextStone)
+            correctAnswer = this.getCorrectAnswer(stone, nextStone);
+
         }
         return correctAnswer;
     }
     checkUnderStone(stone, bottomStone) {
-        let correctAnswer
+        let correctAnswer = undefined;
         let directionStone = this.getStoneAusrichtung(stone)
         let directionBottomStone = this.getStoneAusrichtung(bottomStone)
         let ok = this.getNachbarUntenRichtung(directionStone)
         console.log(directionBottomStone + " " + directionStone + " " + ok)
-
         if (ok.includes(directionBottomStone)) {
             //Steine liegen richtig zueinander
             correctAnswer = this.getCorrectAnswer(stone, bottomStone);
@@ -125,13 +127,12 @@ class dominoCorrector extends Function() {
         console.log("frage1 " + question1 + "  antwort1 " + answer1)
         if (this.isQACorrect(question1, answer1)) {
             console.log("Found " + question1 + answer1)
-            this.addCorrectAnswer(question1, answer1);
-            return true;
+            return { question: question2, answer: answer2, key: 4 };
         } else if (this.isQACorrect(question2, answer2)) {
             console.log("Found " + question2 + answer2)
-            return { question: question2, answer: answer2, key: 4 }
+            return { question: question2, answer: answer2, key: 4 };
         }
-        return false;
+        return undefined;
     }
     addCorrectAnswer(correctAnswer) {
         if (correctAnswer != undefined) {

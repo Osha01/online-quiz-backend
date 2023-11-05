@@ -11,6 +11,7 @@ class dominoCorrector extends Function() {
         let rows = body.rows
         this.correctQuestions = body.questions
 
+
         this.correctAnswers = this.getCorrectAnswers(rows)
         this.wrongAnswers = this.getWrongAnswers()
 
@@ -146,7 +147,7 @@ class dominoCorrector extends Function() {
     correctQA(observedQuestion, observedAnswer) {
         this.correctQuestions.forEach((q) => {
             console.log(q.question + "  " + q.answer);
-            if (q.question == observedQuestion && observedAnswer == q.answer) {
+            if (q.props.question == observedQuestion && observedAnswer == q.props.answer) {
                 return true;
             }
         })

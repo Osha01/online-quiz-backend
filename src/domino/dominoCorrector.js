@@ -146,7 +146,7 @@ class dominoCorrector extends Function() {
 
         if (this.correctAnswers != undefined && this.correctAnswers != []) {
             this.correctAnswers.forEach(answer => {
-                this.correctQuestions.forEach(question, index => {
+                this.correctQuestions.forEach((question, index) => {
                     if (question.question == answer.question) {
                         deleteQuestionFromWrongAnswers(index);
                     }

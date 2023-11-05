@@ -10,6 +10,7 @@ class dominoCorrector extends Function() {
     setDataErgebnisFormular(body) {
         let rows = body.rows
         this.correctQuestions = body.questions
+        console.log(this.correctQuestions);
 
 
         this.correctAnswers = this.getCorrectAnswers(rows)
@@ -93,17 +94,17 @@ class dominoCorrector extends Function() {
             //Steine liegen richtig zueinander
             question = stone.question
             answer = nextStone.answer
-            console.log("frage1 " + question + "  antwort1" + answer)
+            console.log("frage1 " + question + "  antwort1 " + answer)
             if (this.correctQA(question, answer)) {
                 console.log("STimmt 1")
-                this.correctAnswers.push({ question: question, answer: answer })
+                this.correctAnswers.push({ question: question, answer: answer, key: "o" })
             }
             question = nextStone.question
             answer = stone.answer
-            console.log("umgekehrt frage2 " + question + "  antwort2" + answer)
+            console.log("umgekehrt frage2 " + question + "  antwort2 " + answer)
             if (this.correctQA(question, answer)) {
                 console.log("STimmt 2")
-                this.correctAnswers.push({ question: question, answer: answer })
+                this.correctAnswers.push({ question: question, answer: answer, key: "o" })
             }
         }
     }

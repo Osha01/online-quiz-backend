@@ -36,11 +36,6 @@ class KreuzwortDb extends Function {
         const item = await db.getItem(this.getCollection(), key);
         return item;
     }
-
-    async getNextKey(){
-        let items = await this.getList();
-        return items.length;
-    }
 }
 
 module.exports = new KreuzwortDb;

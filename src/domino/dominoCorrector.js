@@ -142,14 +142,14 @@ class dominoCorrector extends Function() {
         return undefined;
     }
     getWrongAnswers() {
+        let copyCQ = this.correctQuestions;
+
         if (this.correctAnswers != undefined && this.correctAnswers != []) {
             this.correctQuestions.forEach(element0 => {
-                this.correctAnswers.forEach(element1 => {
-                    if (element0.props.question != element1.question) {
-                        console.log("richtige Antwort nicht im Array gefunden")
-                        this.wrongAnswers.push({ question: element0.props.question, answer: element0.props.answer, key: "X" })
-                    }
-                })
+                if (this.correctAnswers.find(element => element.question == element0.props.question) == undefined) {
+                    this.wrongAnswers.push({ question: element0.props.question, answer: element0.props.answer, key: "Wrong" })
+                }
+
             })
         }
     }

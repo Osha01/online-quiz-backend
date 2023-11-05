@@ -97,7 +97,7 @@ class dominoCorrector extends Function() {
         let correctAnswer;
         let directionStone = this.getStoneAusrichtung(stone)
         let directionNextStone = this.getStoneAusrichtung(nextStone)
-        let ok = this.getNachbarUntenRichtung(directionStone)
+        let ok = this.getNachbarNebenRichtung(directionStone)
         console.log(directionNextStone + " " + directionStone + " " + ok)
         if (ok.includes(directionNextStone)) {
             correctAnswer = this.getCorrectAnswer(stone, nextStone)

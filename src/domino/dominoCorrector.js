@@ -149,7 +149,7 @@ class dominoCorrector extends Function() {
 
     }
     correctQA(observedQuestion, observedAnswer) {
-        correct = false;
+        let correct = false;
         this.correctQuestions.forEach((q) => {
             console.log(q.props.question + " == " + observedQuestion);
             if (q.props.question == observedQuestion) {

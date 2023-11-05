@@ -62,10 +62,11 @@ class dominoCorrector extends Function() {
                     } else {
                         bottomStone = rows[(row + 1)].columns[column].stone;
                         nextStone = rows[row].columns[(column + 1)].stone;
-                        if (bottomStone.id != "" || bottomStone.id != undefined) {
+                        console.log(bottomStone.id + "   " + nextStone.id)
+                        if (bottomStone.id != "" && bottomStone.id != undefined) {
                             console.log("Stein liegt unter der Zelle " + row + "|" + column)
                         }
-                        if (nextStone.id != "") {
+                        if (nextStone.id != "" && nextStone.id != undefined) {
                             console.log("Stein liegt neben der Zellele " + row + "|" + column)
                             //Stein neben an
                             this.checkNextToStone(observedStone, nextStone)
@@ -156,28 +157,20 @@ class dominoCorrector extends Function() {
         let d = stone.d
 
         if (h && fO && !d) {
-            //"Von Zustand 1 nach 2"
             return "n"
         } else if (!h && fO && d) {
-            //"Von Zustand 2 nach 3")
             return "no"
         } else if (!h && !fO && !d) {
-            //"Von Zustand 3 nach 4")
             return "o"
         } else if (h && !fO && d) {
-            //"Von Zustand 4 nach 5")
             return "so"
         } else if (h && !fO && !d) {
-            //"Von Zustand 5 nach 6")
             return "s"
         } else if (!h && !fO && d) {
-            //"Von Zustand 6 nach 7")
             return "sw"
         } else if (!h && fO && !d) {
-            //"Von Zustand 7 nach 8")
             return "w"
         } else if (h && fO && d) {
-            //"Von Zustand 8 nach 1")
             return "nw"
         }
         else {

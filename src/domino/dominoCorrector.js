@@ -135,7 +135,7 @@ class dominoCorrector extends Function() {
             this.correctAnswers.forEach(answer => {
                 this.correctQuestions.forEach(question, index => {
                     if (question.question == answer.question) {
-                        deleteQuestionFromWrongAnswers(index)
+                        deleteQuestionFromWrongAnswers(index);
                     }
                 });
             });
@@ -143,15 +143,13 @@ class dominoCorrector extends Function() {
         return this.wrongAnswers;
 
     }
-    correctQA(question, answer) {
-        for (let i = 0; i < this.correctQuestions.length; i++) {
-            if (question != undefined
-                && answer != undefined
-                && this.correctQuestions[i].question == question
-                && this.correctQuestions[i].answer == answer) {
+    correctQA(observedQuestion, observedAnswer) {
+        this.correctQuestions.forEach((question) => {
+            console.log(question.question + "  " + question.answer);
+            if (question.question == observedQuestion && observedAnswer == question.answer) {
                 return true;
             }
-        }
+        })
         return false;
 
     }

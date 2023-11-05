@@ -42,7 +42,8 @@ class dominoMessenger extends Function {
           specificQ.push(item)
           copyQ = this.deleteQuestion(rindex, copyQ)
           console.log("Spieler " + users[i] + " bekommt die Frage ")
-          console.log("copyQ" + copyQ)
+          console.log("copyQ übrig: " + copyQ)
+          console.log("specific dazu" + specificQ.props)
         }
         let body = {
           game: "domino",
@@ -53,17 +54,16 @@ class dominoMessenger extends Function {
             activePlayer: users[0],
             questions: specificQ,
           },
-        };
+        }
+
         await channel.publish("start" + users[i], body);
         console.log("gesendet an " + users[i]);
-      }
-      specificQ = []
+        specificQ = []
+      };
     }
-
-
     ably.close();
-
   }
+
   getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }

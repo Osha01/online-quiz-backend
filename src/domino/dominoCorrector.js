@@ -147,7 +147,7 @@ class dominoCorrector extends Function() {
     }
     correctQA(observedQuestion, observedAnswer) {
         this.correctQuestions.forEach((q) => {
-            console.log(q.question + "  " + q.answer);
+            console.log(q.props.question + "  " + q.props.answer);
             if (q.props.question == observedQuestion && observedAnswer == q.props.answer) {
                 return true;
             }

@@ -31,7 +31,7 @@ class dominoCorrector extends Function() {
                 let stone = rows[i].columns[j].stone;
 
                 if (stone.id != "") {
-                    console.log("Es liegt ein Stein: " + stone.key)
+                    console.log("Es liegt ein Stein: " + stone.id)
 
                     if (i == (rows.length - 1) && j == (rows[i].columns.length - 1)) {
                         //letzte columns nichts mehr machen
@@ -39,14 +39,16 @@ class dominoCorrector extends Function() {
 
                     } else {
                         //nächste Zeile ein Stein?
-                        let nextStone = rows[i].columns[j + 1].stone;
-                        let bottomStone = rows[i + 1].columns[j].stone
 
-                        if (i != rows.length - 1 && bottomStone.id != "") {
+
+
+                        if (i != (rows.length - 1) && bottomStone.id != "") {
+                            let bottomStone = rows[i + 1].columns[j];
                             console.log("Unten suchen (erlaubt) Zelle " + i + "|" + j)
 
                         }
-                        if (j != rows[i].length - 1 && nextStone.id != "") {
+                        if (j != (rows[i].length - 1) && nextStone.id != "") {
+                            let nextStone = rows[i].columns[j + 1].stone;
                             console.log("Neben an suchen (erlaubt) zelle " + i + "|" + j)
                             //Stein neben an
                             this.checkNextToStone(stone, nextStone)
@@ -63,10 +65,13 @@ class dominoCorrector extends Function() {
         console.log("Stein neben an: " + nextStone)
 
         let directionStone = this.getStoneAusrichtung(stone)
+        console.log(directionStone)
         let directionNextStone = this.getStoneAusrichtung(nextStone)
+        console.log(directionNextStone)
         let ok = this.getNachbarNebenRichtung(directionStone)
+        console.log(ok)
 
-        if (ok.includes(directionNextStone, 0)) {
+        if (ok.includes(directionNextStone)) {
             //Steine liegen richtig zueinander
             frage = stone.frage
             antwort = nextStone.antwort

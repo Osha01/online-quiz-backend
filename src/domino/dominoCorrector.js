@@ -35,7 +35,7 @@ class dominoCorrector extends Function() {
             for (let column = 0; column < rows[row].columns.length; column++) {
                 console.log("zelle " + row + "|" + column + " wird angeschaut. ")
                 observedStone = rows[row].columns[column].stone;
-                if (observedStone.id != "") {
+                if (observedStone.id != "" && observedStone.id != undefined) {
                     console.log("Es liegt ein Stein: " + observedStone.id)
                     //letzte Zelle nichts mehr machen
                     if (row == lastRow && column == lastColumn) {
@@ -90,8 +90,8 @@ class dominoCorrector extends Function() {
 
         if (ok.includes(directionNextStone)) {
             //Steine liegen richtig zueinander
-            question = stone.
-                answer = nextStone.answer
+            question = stone.question
+            answer = nextStone.answer
             console.log("frage1 " + question + "  antwort1" + answer)
             if (this.correctQA(question, answer)) {
                 console.log("STimmt 1")

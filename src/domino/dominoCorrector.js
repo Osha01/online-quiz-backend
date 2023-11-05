@@ -143,16 +143,14 @@ class dominoCorrector extends Function() {
     }
     getWrongAnswers() {
         if (this.correctAnswers != undefined && this.correctAnswers != []) {
-            this.correctAnswers.forEach(answer => {
-                console.log(answer.props);
-                if (this.correctQuestions.find((element) => (
-                    answer.props.question == element.question
-                )) == undefined) {
-                    console.log("richtige Antwort nicht im Array gefunden")
-                    this.wrongAnswers.push({ question: answer.props.question, answer: answer.props.answer, key: "X" })
-                }
-
-            });
+            this.correctQuestions.forEach(element0 => {
+                this.correctAnswers.forEach(element1 => {
+                    if (element0.props.question != element1.question) {
+                        console.log("richtige Antwort nicht im Array gefunden")
+                        this.wrongAnswers.push({ question: element0.props.question, answer: element0.props.answer, key: "X" })
+                    }
+                })
+            })
         }
     }
     isQACorrect(observedQuestion, observedAnswer) {
@@ -160,7 +158,7 @@ class dominoCorrector extends Function() {
         for (const q of this.correctQuestions) {
             console.log(q.props.question + " == " + observedQuestion);
             if (q.props.question == observedQuestion) {
-                console.log(q.props.question + " == " + observedAnswer);
+                console.log(q.props.answer + " == " + observedAnswer);
                 if (observedAnswer == q.props.answer) {
                     console.log("Found")
                     return true;

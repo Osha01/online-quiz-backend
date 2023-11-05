@@ -25,45 +25,48 @@ class dominoCorrector extends Function() {
         let bottomStone;
         let nextStone;
         let observedStone;
+        let lastRow = rows.length - 1;
+        let lastColumn = rows[0].columns.length - 1;
+        console.log("lastRow " + lastRow + " lastColumn " + lastColumn)
         //rows durchlaufen
         //Zeilen: 
-        for (let i = 0; i < rows.length; i++) {
+        for (let row = 0; row < rows.length; row++) {
             //Spalten: 
-            for (let j = 0; j < rows[i].columns.length; j++) {
-                console.log("zelle " + i + "|" + j + " wird angeschaut. ")
-                observedStone = rows[i].columns[j].stone;
+            for (let column = 0; column < rows[row].columns.length; column++) {
+                console.log("zelle " + row + "|" + column + " wird angeschaut. ")
+                observedStone = rows[row].columns[column].stone;
 
                 if (observedStone.id != "") {
                     console.log("Es liegt ein Stein: " + observedStone.id)
                     //letzte Zelle nichts mehr machen
-                    if (i == (rows.length - 1) && j == (rows[i].columns.length - 1)) {
+                    if (row == lastRow && column == lastColumn) {
 
                         console.log("Ist die letzte Zelle")
 
                     }
                     //letzte Zeile nicht nach unten schauen 
-                    else if (i == (rows.length - 1)) {
-                        bottomStone = rows[i + 1].columns[j];
+                    else if (row == lastRow) {
+                        bottomStone = rows[row + 1].columns[column];
                         if (bottomStone.id != "" || bottomStone.id != undefined) {
-                            console.log("Stein liegt unter der Zelle " + i + "|" + j)
+                            console.log("Stein liegt unter der Zelle " + row + "|" + column)
                         }
                     }
                     // letzte Spalte nicht nach rechts schauen
-                    else if (i == (rows[i].length - 1)) {
-                        nextStone = rows[i].columns[j + 1].stone;
+                    else if (column == lastColumn) {
+                        nextStone = rows[row].columns[column + 1].stone;
                         if (nextStone.id != "" || nextStone.id != undefined) {
-                            console.log("Stein liegt neben der Zellele " + i + "|" + j)
+                            console.log("Stein liegt neben der Zellele " + row + "|" + column)
                             //Stein neben an
                             this.checkNextToStone(observedStone, nextStone)
                         }
                     } else {
-                        bottomStone = rows[(i + 1)].columns[j].stone;
-                        nextStone = rows[i].columns[(j + 1)].stone;
+                        bottomStone = rows[(row + 1)].columns[column].stone;
+                        nextStone = rows[row].columns[(column + 1)].stone;
                         if (bottomStone.id != "" || bottomStone.id != undefined) {
-                            console.log("Stein liegt unter der Zelle " + i + "|" + j)
+                            console.log("Stein liegt unter der Zelle " + row + "|" + column)
                         }
                         if (nextStone.id != "") {
-                            console.log("Stein liegt neben der Zellele " + i + "|" + j)
+                            console.log("Stein liegt neben der Zellele " + row + "|" + column)
                             //Stein neben an
                             this.checkNextToStone(observedStone, nextStone)
                         }
@@ -102,7 +105,6 @@ class dominoCorrector extends Function() {
         }
     }
     checkUnderStone(stone, bottomStone) {
-        console.log("Stein unten drunter " + i + 1 + "|" + j)
         let directionStone = this.getStoneAusrichtung(stone)
         let directionBottomStone = this.getStoneAusrichtung(bottomStone)
         let ok = this.getNachbarUntenRichtung(directionStone)

@@ -12,7 +12,7 @@ class dominoNew extends Function {
     let item;
     let laenge = 3;
 
-    if (anzahlFragen < 8) {
+    if (anzahlFragen < body.users.length) {
       for (let i = 0; i < 8; i++) {
         item = await db.getItem(collection.results[i].key)
         correctQuestions.push(item)

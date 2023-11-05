@@ -7,6 +7,7 @@ class dominoMessenger extends Function {
     console.log("messageStart");
     const Ably = require("ably");
     const ably = new Ably.Realtime.Promise("0sa0Qw.VDigAw:OeO1LYUxxUM7VIF4bSsqpHMSZlqMYBxN-cxS0fKeWDE");
+    console.log("user count sendfirstMessage" + users.length)
     let anzahlUsers = users.length
     let copyQ = switchedList;
     let specificQ = []

@@ -26,7 +26,7 @@ class dominoNew extends Function {
         console.log(item);
       }
     let switchedList = this.switchList(correctQuestions)
-    console.log(switchedList);
+    console.log(switchedList + " users: " + body.users);
 
     await messenger.sendFirstMessage(
       switchedList,

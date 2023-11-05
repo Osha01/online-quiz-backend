@@ -35,14 +35,11 @@ class dominoCorrector extends Function() {
             for (let column = 0; column < rows[row].columns.length; column++) {
                 console.log("zelle " + row + "|" + column + " wird angeschaut. ")
                 observedStone = rows[row].columns[column].stone;
-
                 if (observedStone.id != "") {
                     console.log("Es liegt ein Stein: " + observedStone.id)
                     //letzte Zelle nichts mehr machen
                     if (row == lastRow && column == lastColumn) {
-
                         console.log("Ist die letzte Zelle")
-
                     }
                     //letzte Zeile nicht nach unten schauen 
                     else if (column == lastColumn) {
@@ -78,6 +75,9 @@ class dominoCorrector extends Function() {
         }
     }
     checkNextToStone(stone, nextStone) {
+        let frage;
+        let antwort;
+
         console.log("Stein: " + stone)
         console.log("Stein neben an: " + nextStone)
 

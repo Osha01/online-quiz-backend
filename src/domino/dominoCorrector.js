@@ -15,7 +15,7 @@ class dominoCorrector extends Function() {
 
         this.getCorrectAnswers(rows)
 
-        this.wrongAnswers = this.getWrongAnswers()
+        this.getWrongAnswers()
 
         let res = { correctAnswers: this.correctAnswers, wrongAnswers: this.wrongAnswers }
         console.log("correct" + this.correctAnswers)
@@ -142,19 +142,18 @@ class dominoCorrector extends Function() {
         return undefined;
     }
     getWrongAnswers() {
-        this.wrongAnswers = this.correctQuestions;
-
         if (this.correctAnswers != undefined && this.correctAnswers != []) {
             this.correctAnswers.forEach(answer => {
-                this.correctQuestions.forEach((question, index) => {
-                    if (question.question == answer.question) {
-                        deleteQuestionFromWrongAnswers(index);
-                    }
-                });
+                console.log(answer.props);
+                if (this.correctQuestions.find((element) => (
+                    answer.props.question == element.question
+                )) == undefined) {
+                    console.log("richtige Antwort nicht im Array gefunden")
+                    this.wrongAnswers.push({ question: answer.props.question, answer: answer.props.answer, key: "X" })
+                }
+
             });
         }
-        return this.wrongAnswers;
-
     }
     isQACorrect(observedQuestion, observedAnswer) {
 

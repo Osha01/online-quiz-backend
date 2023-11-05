@@ -114,13 +114,13 @@ class dominoCorrector extends Function() {
             //Steine liegen richtig zueinander
             let question = stone.question
             let answer = bottomStone.answer
-            console.log("frage1 " + question + "  antwort1" + answer)
+            console.log("frage1 " + question + "  antwort1 " + answer)
             if (this.correctQA(question, answer)) {
                 this.correctAnswers.push({ question: question, answer: answer })
             }
             question = bottomStone.question
             answer = stone.answer
-            console.log("umgekehrt frage2 " + question + "  antwort2" + answer)
+            console.log("umgekehrt frage2 " + question + "  antwort2 " + answer)
             if (this.correctQA(question, answer)) {
                 console.log("STimmt 2")
                 this.correctAnswers.push({ question: question, answer: answer })
@@ -144,9 +144,9 @@ class dominoCorrector extends Function() {
 
     }
     correctQA(observedQuestion, observedAnswer) {
-        this.correctQuestions.forEach((question) => {
-            console.log(question.question + "  " + question.answer);
-            if (question.question == observedQuestion && observedAnswer == question.answer) {
+        this.correctQuestions.forEach((q) => {
+            console.log(q.question + "  " + q.answer);
+            if (q.question == observedQuestion && observedAnswer == q.answer) {
                 return true;
             }
         })

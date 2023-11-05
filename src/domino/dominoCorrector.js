@@ -118,14 +118,14 @@ class dominoCorrector extends Function() {
             let answer = bottomStone.answer
             console.log("frage1 " + question + "  antwort1 " + answer)
             if (this.correctQA(question, answer)) {
-                this.correctAnswers.push({ question: question, answer: answer })
+                this.correctAnswers.push({ question: question, answer: answer, key: "o" })
             }
             question = bottomStone.question
             answer = stone.answer
             console.log("umgekehrt frage2 " + question + "  antwort2 " + answer)
             if (this.correctQA(question, answer)) {
                 console.log("STimmt 2")
-                this.correctAnswers.push({ question: question, answer: answer })
+                this.correctAnswers.push({ question: question, answer: answer, key: "o" })
             }
         }
     }
@@ -148,8 +148,13 @@ class dominoCorrector extends Function() {
     correctQA(observedQuestion, observedAnswer) {
         this.correctQuestions.forEach((q) => {
             console.log(q.props.question + "  " + q.props.answer);
-            if (q.props.question == observedQuestion && observedAnswer == q.props.answer) {
-                return true;
+            console.log(q.props.question + " == " + observedQuestion);
+            if (q.props.question == observedQuestion) {
+                console.log(q.props.question + " == " + observedAnswer);
+                if (observedAnswer == q.props.answer) {
+                    console.log("Found")
+                    return true;
+                }
             }
         })
         return false;

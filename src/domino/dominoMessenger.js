@@ -57,6 +57,7 @@ class dominoMessenger extends Function {
         await channel.publish("start" + users[i], body);
         console.log("gesendet an " + users[i]);
       }
+      specificQ = []
     }
 
 

@@ -45,14 +45,14 @@ class dominoCorrector extends Function() {
 
                     }
                     //letzte Zeile nicht nach unten schauen 
-                    else if (row == lastRow) {
+                    else if (column == lastColumn) {
                         bottomStone = rows[row + 1].columns[column];
                         if (bottomStone.id != "" || bottomStone.id != undefined) {
                             console.log("Stein liegt unter der Zelle " + row + "|" + column)
                         }
                     }
                     // letzte Spalte nicht nach rechts schauen
-                    else if (column == lastColumn) {
+                    else if (row == lastRow) {
                         nextStone = rows[row].columns[column + 1].stone;
                         if (nextStone.id != "" || nextStone.id != undefined) {
                             console.log("Stein liegt neben der Zellele " + row + "|" + column)

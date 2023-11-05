@@ -9,7 +9,7 @@ class dominoController extends Function() {
       return res;
     } else if (body.state == 4) {
       const dominoCorrector = require("./dominoCorrector");
-      let res = await dominoCorrector.getErgebnisFormular(body);
+      let res = await dominoCorrector.setDataErgebnisFormular(body);
       return res;
     }
   }

@@ -119,7 +119,8 @@ class dominoCorrector extends Function() {
                 });
             });
         }
-        return wList;
+        return this.wrongAnswers;
+
     }
     frageStimmt(frage, antwort) {
         for (let i = 0; i < this.correctQuestions.length; i++) {

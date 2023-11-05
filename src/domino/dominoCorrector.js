@@ -66,7 +66,7 @@ class dominoCorrector extends Function() {
         let directionNextStone = this.getStoneAusrichtung(nextStone)
         let ok = this.getNachbarNebenRichtung(directionStone)
 
-        if (ok.includes(directionNextStone)) {
+        if (ok.includes(directionNextStone, 0)) {
             //Steine liegen richtig zueinander
             frage = stone.frage
             antwort = nextStone.antwort
@@ -199,7 +199,7 @@ class dominoCorrector extends Function() {
                 return ["n", "no", "nw"]
                 break;
             case "o":
-                return 0
+                return ""
                 break;
             case "so":
                 return ["s", "so", "sw"]
@@ -211,7 +211,7 @@ class dominoCorrector extends Function() {
                 return ["s", "so", "sw"]
                 break;
             case "w":
-                return 0
+                return ""
                 break;
             case "nw":
                 return ["n", "no", "nw"]
@@ -220,7 +220,7 @@ class dominoCorrector extends Function() {
     getNachbarNebenRichtung(richtung) {
         switch (richtung) {
             case "n":
-                return 0
+                return ""
                 break;
             case "no":
                 return ["o", "no", "so"]
@@ -232,7 +232,7 @@ class dominoCorrector extends Function() {
                 return ["o", "no", "so"]
                 break;
             case "s":
-                return 0
+                return ""
                 break;
             case "sw":
                 return ["w", "nw", "sw"]

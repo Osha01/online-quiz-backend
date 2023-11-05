@@ -38,22 +38,34 @@ class dominoCorrector extends Function() {
                         console.log("Ist die letzte Zelle")
 
                     } else {
+                        let bottomStone
+                        let nextStone
                         //nächste Zeile ein Stein?
-
-
-
-                        if (i != (rows.length - 1) && bottomStone.id != "") {
-                            let bottomStone = rows[i + 1].columns[j];
-                            console.log("Unten suchen (erlaubt) Zelle " + i + "|" + j)
-
+                        if (i != (rows.length - 1) && i != (rows[i].length - 1)) {
+                            bottomStone = rows[i + 1].columns[j];
+                            nextStone = rows[i].columns[j + 1].stone;
+                            if (bottomStone.id != "") {
+                                console.log("Stein liegt unter der Zelle " + i + "|" + j)
+                            }
+                            if (nextStone.id != "") {
+                                console.log("Stein liegt neben der Zellele " + i + "|" + j)
+                                //Stein neben an
+                                this.checkNextToStone(stone, nextStone)
+                            }
+                        } else if (i == (rows.length - 1)) {
+                            bottomStone = rows[i + 1].columns[j];
+                            if (bottomStone.id != "") {
+                                console.log("Stein liegt unter der Zelle " + i + "|" + j)
+                            }
+                        } else if (i == (rows[i].length - 1)) {
+                            nextStone = rows[i].columns[j + 1].stone;
+                            if (nextStone.id != "") {
+                                console.log("Stein liegt neben der Zellele " + i + "|" + j)
+                                //Stein neben an
+                                this.checkNextToStone(stone, nextStone)
+                            }
                         }
-                        if (j != (rows[i].length - 1) && nextStone.id != "") {
-                            let nextStone = rows[i].columns[j + 1].stone;
-                            console.log("Neben an suchen (erlaubt) zelle " + i + "|" + j)
-                            //Stein neben an
-                            this.checkNextToStone(stone, nextStone)
 
-                        }
                     }
 
                 }

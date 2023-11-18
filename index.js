@@ -66,6 +66,18 @@ app.delete("/contributor", async (req, res) => {
     res.json(item).end();
 });
 
+//Lobby abfangen
+app.get("/lobby", async (req, res) => {
+    const controller = require('./src/other/lobby');
+    let item = await controller.getNewCode();
+    res.json(item).end();
+});
+app.delete("/lobby", async (req, res) => {
+    const controller = require('./src/other/lobby');
+    let item = await controller.deleteCode(req.body);
+    res.json(item).end();
+});
+
 app.post("/db/:col/:key", async (req, res) => {
     console.log(req.body);
 

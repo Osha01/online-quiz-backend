@@ -15,7 +15,7 @@ class Lobby extends Function {
     }
 
     async deleteCode(body) {
-        await db.deleteItem(this.getLobbyCollection(), body.key)
+        await db.deleteItem(this.getLobbyCollection(), '' + body.key)
     }
 
     async generateCode() {

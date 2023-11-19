@@ -8,7 +8,7 @@ class Lobby extends Function {
 
     async getNewCode() {
         let newCode = await this.generateCode();
-        await db.setItem(this.getLobbyCollection(), newCode);
+        await db.setItem(this.getLobbyCollection(), '' + newCode);
         return {
             code: newCode
         }
@@ -23,7 +23,7 @@ class Lobby extends Function {
         let list = await db.getFullList(this.getLobbyCollection());
         if (list.results.length != 0) {
             let found = false;
-            let counter = 0
+            let counter = 0;
             do {
                 found = false;
                 for (let i = 0; i < list.results.length; i++) {

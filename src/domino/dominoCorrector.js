@@ -1,4 +1,5 @@
 
+
 class dominoCorrector extends Function() {
     correctAnswers = [];
     wrongAnswers = [];

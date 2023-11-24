@@ -1,4 +1,4 @@
-class TabooCreator extends Function {
+class wwmCreator extends Function {
     constructor(props) {
         super(props);
     }
@@ -69,6 +69,37 @@ class TabooCreator extends Function {
         return indexes;
     }
 
+    async applyFiftyFiftyJoker(question) {
+        // Implementiere den 50/50-Joker für eine einzelne Frage
+
+        let correctAnswer = question.correct;
+        let availableAnswers = [...question.answers];
+        availableAnswers.splice(correctAnswer, 1); // Entferne die korrekte Antwort
+
+        // Zufällig eine falsche Antwort entfernen
+        let removedIndex = Math.floor(Math.random() * availableAnswers.length);
+        availableAnswers.splice(removedIndex, 1);
+
+        return {
+            ...question,
+            answers: availableAnswers,
+        };
+    }
+
+    async createQuiz() {
+        const db = require('../other/simpleQuestionDb');
+        let list = await db.getWwmList();
+        console.log(list);
+        let indexes = await this.getRandomIndexes(list.length - 1, 10);
+
+        let questions = [];
+        for (let i = 0; i < indexes.length; i++) {
+            let question = await db.getItem(list[indexes[i]].key);
+            // Anwendung des 50/50-Jokers auf jede Frage
+            let questionWithJoker = await this.applyFiftyFiftyJoker(question);
+            questions.push(questionWithJoker);
+        }
+    }
     checkForIndex(index, list) {
         for (let i = 0; i < list.length; i++) {
             if (list[i] == index) return true;
@@ -77,4 +108,4 @@ class TabooCreator extends Function {
     }
 }
 
-module.exports = new TabooCreator();
+module.exports = new wwmCreator();

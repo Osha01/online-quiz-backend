@@ -99,17 +99,7 @@ class wwmCreator extends Function {
             let questionWithJoker = await this.applyFiftyFiftyJoker(question);
             questions.push(questionWithJoker);
         }
-
-        let quiz = questions.map(question => ({
-            question: question.props.question,
-            answers: question.answers,
-            correct: question.correct,
-        }));
-
-        console.log(quiz);
-        return quiz;
     }
-    
     checkForIndex(index, list) {
         for (let i = 0; i < list.length; i++) {
             if (list[i] == index) return true;

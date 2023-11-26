@@ -1,12 +1,13 @@
+//Verwaltet die Nachrichtenübermittlung für das Taboo-Spiel 
 class TabooMessenger extends Function {
     constructor(props) {
         super(props);
     }
-
+     // Generiert die Kanal-ID basierend auf dem Raum
     getChannelId(room) {
         return 'room' + room;
     }
-
+    // Sendet Nachrichten an die Spieler über Ably-Channel
     async sendMessages(quiz, users, room) {
         const Ably = require('ably');
         const ably = new Ably.Realtime.Promise('0sa0Qw.VDigAw:OeO1LYUxxUM7VIF4bSsqpHMSZlqMYBxN-cxS0fKeWDE');
@@ -19,6 +20,7 @@ class TabooMessenger extends Function {
         let teams;
         if (users.length >= 4) teams = 2;
         else teams = 1;
+        // Iteriert durch die Spieler und sendet Nachrichten 
         for (let i = 0; i < users.length; i++) {
             let user = users[i];
             let enemyTurns = [];
@@ -38,6 +40,7 @@ class TabooMessenger extends Function {
                     })
                 }
             }
+            // Erstellt die Nachricht
             let body = {
                 game: 'taboo',
                 users: users,
@@ -50,12 +53,11 @@ class TabooMessenger extends Function {
                     enemyTurns: enemyTurns
                 }
             }
-            await channel.publish('start' + user, body);
-
+            await channel.publish('start' + user, body); // Sendet die Nachricht an den Spieler 
             team = (team + 1) % teams;
             turn = turn + 1;
         }
-        ably.close();
+        ably.close(); // Schließt die Ably-Verbindung
     }
 }
 

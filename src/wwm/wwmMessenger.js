@@ -1,12 +1,12 @@
-class WwmController extends Function {
+class WwmMessenger extends Function {
     constructor(props) {
         super(props);
     }
-
+    // Generiert die Kanal-ID basierend auf dem Raum
     getChannelId(room) {
         return 'room' + room;
     }
-
+    // Sendet Quiznachrichten an Moderator und Spieler
     async sendMessages(quiz, moderator, player, room, users) {
         const Ably = require('ably');
         const ably = new Ably.Realtime.Promise('0sa0Qw.VDigAw:OeO1LYUxxUM7VIF4bSsqpHMSZlqMYBxN-cxS0fKeWDE');
@@ -49,4 +49,4 @@ class WwmController extends Function {
     }
 }
 
-module.exports = new WwmController();
+module.exports = new WwmMessenger();

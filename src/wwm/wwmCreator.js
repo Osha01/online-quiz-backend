@@ -1,11 +1,12 @@
+//Erstellt das Quiz für "Wer wird Millionär" 
 class WwmCreator extends Function {
     constructor(props) {
         super(props);
     }
-
+    // Erstellt das Quiz mit zufällig ausgewählten Fragen und Antwortoptionen
     async createQuiz() {
         const db = require('../other/simpleQuestionDb');
-        let list = await db.getWwmList();
+        let list = await db.getWwmList(); // Ruft die Liste der "Wer wird Millionär?"-Fragen ab
         console.log(list);
         let indexes = await this.getRandomIndexes(list.length - 1, 10);
 
@@ -52,7 +53,7 @@ class WwmCreator extends Function {
         console.log(quiz);
         return quiz;
     }
-
+    // Generiert eine Liste mit zufälligen Indexen
     async getRandomIndexes(max, num) {
         const randomizer = require('../other/randomInt');
 
@@ -68,7 +69,7 @@ class WwmCreator extends Function {
         }
         return indexes;
     }
-
+    // Überprüft, ob ein Index bereits in der Liste vorhanden ist
     checkForIndex(index, list) {
         for (let i = 0; i < list.length; i++) {
             if (list[i] == index) return true;

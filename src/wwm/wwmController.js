@@ -1,8 +1,9 @@
+//Steuert den Ablauf des "Wer wird Millionär?"-Spiels
 class WwmController extends Function {
     constructor(props) {
         super(props);
     }
-
+    // Verarbeitet den Aufruf und initiiert die Erstellung und den Versand des Quiz
     async parseCall(body) {
         const creator = require('./wwmCreator');
         const messenger = require('./wwmMessenger');

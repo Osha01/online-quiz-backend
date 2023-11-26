@@ -1,4 +1,4 @@
-class TabooCreator extends Function {
+class WwmCreator extends Function {
     constructor(props) {
         super(props);
     }
@@ -77,4 +77,4 @@ class TabooCreator extends Function {
     }
 }
 
-module.exports = new TabooCreator();
+module.exports = new WwmCreator();

@@ -1,4 +1,4 @@
-class TabooController extends Function {
+class WwmController extends Function {
     constructor(props) {
         super(props);
     }
@@ -17,4 +17,4 @@ class TabooController extends Function {
     }
 }
 
-module.exports = new TabooController();
+module.exports = new WwmController();
